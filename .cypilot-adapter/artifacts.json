@@ -12,7 +12,12 @@
       "name": "ai-chat-via-cyber-pilot",
       "slug": "ai-chat-via-cyber-pilot",
       "kit": "cypilot-sdlc",
-      "artifacts": [],
+      "artifacts": [
+        {
+          "path": "docs/PRD.md",
+          "kind": "PRD"
+        }
+      ],
       "codebase": [],
       "children": []
     }

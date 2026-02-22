@@ -1,0 +1,374 @@
+cypilot, There is an idea to create AI chat.
+
+1) Product scope and goals
+Goal
+
+Build a web-based AI chat application that provides:
+
+A fast, reliable conversational interface
+
+Multi-turn context handling
+
+Streaming responses
+
+Conversation history
+
+Basic account system
+
+Safety and moderation controls
+
+Admin observability for quality, cost, and abuse
+
+Non-goals (for MVP)
+
+Voice mode / real-time calling
+
+Image generation/editing UI
+
+On-device inference
+
+Enterprise org features (SSO, SCIM, RBAC, data residency)
+
+Full “agent” automations (scheduled tasks, toolchains)
+
+2) Personas and use cases
+Personas
+
+Anonymous visitor: tries chat quickly with limited features.
+
+Logged-in user: uses the app daily, expects history, settings, and reliability.
+
+Admin/Support: monitors uptime, abuse, and costs; handles user tickets.
+
+Core use cases
+
+Start a new chat, ask questions, get streamed answers.
+
+Continue a conversation with prior context.
+
+Search and open past conversations.
+
+Copy/share messages.
+
+Configure model/settings (within allowed range).
+
+Report problematic responses.
+
+3) Functional requirements
+3.1 Chat experience (core)
+
+FR-CHAT-1: Users can create a new conversation.
+
+Acceptance: “New chat” clears the thread and starts a new conversation id.
+
+FR-CHAT-2: Users can send messages and receive assistant responses.
+
+Acceptance: Message appears instantly in UI; response appears as it is generated.
+
+FR-CHAT-3 (Streaming): Assistant responses stream token-by-token (or chunk-by-chunk).
+
+Acceptance: Partial response visible within 500ms–1500ms of request start (depending on model).
+
+FR-CHAT-4 (Stop / Regenerate):
+
+Stop generation mid-stream.
+
+Regenerate last assistant response.
+
+Acceptance: Stop halts streaming within ~1s; Regenerate replaces/branches from last turn.
+
+FR-CHAT-5 (Edit and resend):
+
+User can edit a previous user message and re-run from that point (creates a branch).
+
+Acceptance: Editing turn N produces a new branch; original remains accessible.
+
+FR-CHAT-6 (Formatting):
+
+Render Markdown: headings, lists, tables, links.
+
+Render code blocks with syntax highlighting and “copy” button.
+
+Basic math rendering (optional MVP).
+
+Acceptance: Markdown safely rendered without script injection.
+
+FR-CHAT-7 (Attachments) [optional MVP]:
+
+Upload files (PDF, txt, docx) for “chat with file”.
+
+Acceptance: File listed in composer; assistant can reference extracted text.
+
+FR-CHAT-8 (Citations) [optional MVP]:
+
+If using retrieval/browsing, responses can include citations and links.
+
+3.2 Conversation history and organization
+
+FR-HIST-1: Conversations persist for logged-in users.
+
+Acceptance: Reloading page shows prior conversations.
+
+FR-HIST-2: Sidebar list of conversations with title, last updated time.
+
+Acceptance: New chats auto-title after first assistant response (or user can rename).
+
+FR-HIST-3: Rename and delete conversations.
+
+Acceptance: Delete removes from UI; backend retains per retention policy.
+
+FR-HIST-4: Search conversation titles and message content.
+
+Acceptance: Query returns matching threads quickly (<1s for typical user history).
+
+FR-HIST-5 (Share links) [optional MVP]:
+
+Generate a shareable, view-only link to a conversation (with redaction options).
+
+3.3 Accounts, auth, and user settings
+
+FR-AUTH-1: Authentication (email+password or magic link) + OAuth (Google) (choose at least one for MVP).
+
+Acceptance: Logged-in state persists; sign-out works reliably.
+
+FR-USER-1: User settings
+
+Theme (light/dark/system).
+
+Default model (if multiple).
+
+Response preferences (verbosity, code style) (optional).
+
+Acceptance: Settings persist across devices.
+
+FR-PRIV-1: Privacy controls (minimum)
+
+“Improve the model” opt-in/out (if you train).
+
+“Delete account” flow (if applicable).
+
+3.4 Model orchestration and backend behavior
+
+FR-MODEL-1: Support at least one LLM provider/model.
+
+Acceptance: Requests route to model reliably with retry/backoff.
+
+FR-MODEL-2 (Context management):
+
+Maintain conversation state.
+
+Apply a context window strategy: truncation, summarization, or retrieval.
+
+Acceptance: Multi-turn coherence in typical 20–50 turn chats.
+
+FR-MODEL-3 (System and developer instructions):
+
+System prompt and app policy applied to every conversation.
+
+Acceptance: Policy is non-user-editable; changes versioned.
+
+FR-MODEL-4 (Tool calling) [later]:
+
+Structured function/tool calling with schema validation.
+
+Tool execution sandboxing and timeouts.
+
+FR-MODEL-5 (Rate limiting and quotas):
+
+Per-user and per-IP limits.
+
+Anonymous users get stricter limits.
+
+Acceptance: Abuse doesn’t degrade service for normal users.
+
+3.5 Safety, moderation, and policy
+
+FR-SAFE-1: Input/output moderation.
+
+Block/flag disallowed content.
+
+Provide safe completion alternatives.
+
+Acceptance: Disallowed categories are refused consistently.
+
+FR-SAFE-2: User reporting.
+
+“Report” button on assistant messages; capture conversation snippet and metadata.
+
+Acceptance: Reports appear in admin console.
+
+FR-SAFE-3: Prompt injection defenses (if tools/retrieval exist).
+
+Delineate trusted/untrusted content.
+
+Tool allowlists; minimal privileges.
+
+3.6 Admin and observability
+
+FR-ADMIN-1: Admin dashboard (MVP-lite)
+
+Request volume, latency, error rate.
+
+Token usage/cost estimate by day.
+
+Top users by usage (privacy-aware).
+
+Acceptance: Metrics updated near-real-time.
+
+FR-ADMIN-2: Logs and tracing
+
+Correlate UI request ↔ backend ↔ model provider.
+
+Redact sensitive content by default; gated access for support.
+
+FR-ADMIN-3: Incident controls
+
+Kill switch for a model/provider.
+
+Feature flags for streaming, attachments, browsing.
+
+4) UX and UI requirements (like chatgpt.com)
+Layout
+
+Left sidebar: New chat, conversation list, search, user menu.
+
+Main panel: message thread, streaming assistant, scroll behavior.
+
+Composer: multi-line input, send button, file attach (optional), model selector (optional).
+
+Interaction details
+
+Enter to send; Shift+Enter for newline.
+
+Auto-scroll to bottom while generating; if user scrolls up, stop auto-scroll and show “Jump to latest”.
+
+Copy button for code blocks and whole messages.
+
+Message actions: copy, regenerate, edit (user messages), report (assistant), share (optional).
+
+Accessibility
+
+WCAG 2.1 AA target.
+
+Keyboard navigation for sidebar and message actions.
+
+Screen reader-friendly streaming (announce completion politely).
+
+5) Non-functional requirements (NFRs)
+Performance & reliability
+
+P95 time-to-first-token: target < 2s (depends on model/provider).
+
+P95 end-to-end for short answers: < 8s (tunable).
+
+99.9% uptime target (later); MVP: 99.5% acceptable.
+
+Graceful degradation if provider is down (fallback model or friendly error).
+
+Security
+
+OWASP Top 10 coverage.
+
+Strong CSP, XSS protections, CSRF protections.
+
+Secrets in vault; rotate keys.
+
+Encryption in transit (TLS) and at rest.
+
+Privacy & compliance
+
+Data retention policy configurable.
+
+Clear user-facing privacy disclosure.
+
+GDPR-style export/delete (if you operate in those regions).
+
+Cost controls
+
+Hard caps per user/day.
+
+Prompt caching where possible.
+
+Token budgeting (truncate long histories, summarize older turns).
+
+6) Data model (high-level)
+
+User
+
+id, email/oauth, created_at, plan, settings JSON, status
+
+Conversation
+
+id, user_id, title, created_at, updated_at, deleted_at, share_id (optional)
+
+Message
+
+id, conversation_id, role (user/assistant/system/tool), content (markdown), created_at
+
+metadata: model, token_counts, latency_ms, safety_flags, attachments refs
+
+Attachment (optional)
+
+id, user_id, filename, mime, size, storage_url, extracted_text_ref, created_at
+
+7) API requirements (example endpoints)
+
+POST /api/auth/* (login/logout)
+
+GET /api/conversations
+
+POST /api/conversations (new)
+
+GET /api/conversations/:id
+
+PATCH /api/conversations/:id (rename)
+
+DELETE /api/conversations/:id
+
+POST /api/conversations/:id/messages (send)
+
+POST /api/conversations/:id/generate (regenerate / branch)
+
+Streaming via SSE or WebSocket:
+
+SSE recommended for simplicity; WS for richer bidirectional control.
+
+8) Quality and acceptance testing
+MVP acceptance checklist
+
+✅ Can start chat, send message, receive streamed answer.
+
+✅ Stop / regenerate works.
+
+✅ Conversation saved and appears in sidebar after reload.
+
+✅ Search conversations works.
+
+✅ Markdown + code blocks render correctly and safely.
+
+✅ Rate limiting prevents spam without harming normal usage.
+
+✅ Basic moderation in place.
+
+✅ Admin can see latency/errors/token usage.
+
+Load test targets (example)
+
+500 concurrent active users (MVP)
+
+P95 backend latency (excluding model): < 300ms
+
+Error rate < 1% (excluding explicit safety refusals)
+
+9) Phased delivery plan (recommended)
+Phase 1 (MVP)
+
+Chat + streaming, auth, history, rename/delete, basic moderation, basic metrics.
+
+Phase 2
+
+Conversation branching, file upload/RAG, share links, more settings, better admin tools.
+
+Phase 3
+
+Tool calling/agents, team workspaces, enterprise controls, voice, multimodal.
