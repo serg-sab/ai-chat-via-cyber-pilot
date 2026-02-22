@@ -37,7 +37,7 @@ This feature provides the authentication layer that enables user-specific featur
 
 ### User Registration Flow
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-flow-user-auth-register`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-flow-user-auth-register`
 
 **Actor**: `cpt-ai-chat-via-cyber-pilot-actor-anon`
 
@@ -52,19 +52,19 @@ This feature provides the authentication layer that enables user-specific featur
 - Weak password — return 400 Bad Request
 
 **Steps**:
-1. [ ] - `p1` - User submits email and password via POST /api/v1/auth/register - `inst-submit-register`
-2. [ ] - `p1` - Validate email format and password strength - `inst-validate-input`
-3. [ ] - `p1` - DB: SELECT FROM users WHERE email = :email to check uniqueness - `inst-check-email-unique`
-4. [ ] - `p1` - **IF** email exists **THEN** return 409 Conflict - `inst-email-exists-error`
-5. [ ] - `p1` - Algorithm: hash password using `cpt-ai-chat-via-cyber-pilot-algo-user-auth-hash-password` - `inst-hash-password`
-6. [ ] - `p1` - DB: INSERT INTO users (email, password_hash, status, created_at, updated_at) - `inst-insert-user`
-7. [ ] - `p1` - Algorithm: generate JWT using `cpt-ai-chat-via-cyber-pilot-algo-user-auth-generate-jwt` - `inst-generate-jwt`
-8. [ ] - `p1` - Algorithm: store session using `cpt-ai-chat-via-cyber-pilot-algo-user-auth-store-session` - `inst-store-session`
-9. [ ] - `p1` - **RETURN** JWT token and user info - `inst-return-token`
+1. [x] - `p1` - User submits email and password via POST /api/v1/auth/register - `inst-submit-register`
+2. [x] - `p1` - Validate email format and password strength - `inst-validate-input`
+3. [x] - `p1` - DB: SELECT FROM users WHERE email = :email to check uniqueness - `inst-check-email-unique`
+4. [x] - `p1` - **IF** email exists **THEN** return 409 Conflict - `inst-email-exists-error`
+5. [x] - `p1` - Algorithm: hash password using `cpt-ai-chat-via-cyber-pilot-algo-user-auth-hash-password` - `inst-hash-password`
+6. [x] - `p1` - DB: INSERT INTO users (email, password_hash, status, created_at, updated_at) - `inst-insert-user`
+7. [x] - `p1` - Algorithm: generate JWT using `cpt-ai-chat-via-cyber-pilot-algo-user-auth-generate-jwt` - `inst-generate-jwt`
+8. [x] - `p1` - Algorithm: store session using `cpt-ai-chat-via-cyber-pilot-algo-user-auth-store-session` - `inst-store-session`
+9. [x] - `p1` - **RETURN** JWT token and user info - `inst-return-token`
 
 ### User Login Flow
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-flow-user-auth-login`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-flow-user-auth-login`
 
 **Actor**: `cpt-ai-chat-via-cyber-pilot-actor-user`
 
@@ -79,19 +79,19 @@ This feature provides the authentication layer that enables user-specific featur
 - Account suspended — return 403 Forbidden
 
 **Steps**:
-1. [ ] - `p1` - User submits email and password via POST /api/v1/auth/login - `inst-submit-login`
-2. [ ] - `p1` - DB: SELECT FROM users WHERE email = :email - `inst-fetch-user`
-3. [ ] - `p1` - **IF** user not found **THEN** return 401 Unauthorized - `inst-user-not-found`
-4. [ ] - `p1` - **IF** user.status != 'active' **THEN** return 403 Forbidden - `inst-check-status`
-5. [ ] - `p1` - Algorithm: verify password using `cpt-ai-chat-via-cyber-pilot-algo-user-auth-verify-password` - `inst-verify-password`
-6. [ ] - `p1` - **IF** password invalid **THEN** return 401 Unauthorized - `inst-invalid-password`
-7. [ ] - `p1` - Algorithm: generate JWT using `cpt-ai-chat-via-cyber-pilot-algo-user-auth-generate-jwt` - `inst-generate-jwt-login`
-8. [ ] - `p1` - Algorithm: store session using `cpt-ai-chat-via-cyber-pilot-algo-user-auth-store-session` - `inst-store-session-login`
-9. [ ] - `p1` - **RETURN** JWT token and user info - `inst-return-token-login`
+1. [x] - `p1` - User submits email and password via POST /api/v1/auth/login - `inst-submit-login`
+2. [x] - `p1` - DB: SELECT FROM users WHERE email = :email - `inst-fetch-user`
+3. [x] - `p1` - **IF** user not found **THEN** return 401 Unauthorized - `inst-user-not-found`
+4. [x] - `p1` - **IF** user.status != 'active' **THEN** return 403 Forbidden - `inst-check-status`
+5. [x] - `p1` - Algorithm: verify password using `cpt-ai-chat-via-cyber-pilot-algo-user-auth-verify-password` - `inst-verify-password`
+6. [x] - `p1` - **IF** password invalid **THEN** return 401 Unauthorized - `inst-invalid-password`
+7. [x] - `p1` - Algorithm: generate JWT using `cpt-ai-chat-via-cyber-pilot-algo-user-auth-generate-jwt` - `inst-generate-jwt-login`
+8. [x] - `p1` - Algorithm: store session using `cpt-ai-chat-via-cyber-pilot-algo-user-auth-store-session` - `inst-store-session-login`
+9. [x] - `p1` - **RETURN** JWT token and user info - `inst-return-token-login`
 
 ### OAuth Login Flow (Google)
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-flow-user-auth-oauth-google`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-flow-user-auth-oauth-google`
 
 **Actor**: `cpt-ai-chat-via-cyber-pilot-actor-anon`, `cpt-ai-chat-via-cyber-pilot-actor-user`
 
@@ -105,22 +105,22 @@ This feature provides the authentication layer that enables user-specific featur
 - OAuth provider error — return 502 Bad Gateway
 
 **Steps**:
-1. [ ] - `p1` - User submits Google OAuth token via POST /api/v1/auth/oauth/google - `inst-submit-oauth`
-2. [ ] - `p1` - Verify OAuth token with Google API - `inst-verify-oauth-token`
-3. [ ] - `p1` - **IF** token invalid **THEN** return 401 Unauthorized - `inst-oauth-invalid`
-4. [ ] - `p1` - Extract email and oauth_id from token payload - `inst-extract-oauth-profile`
-5. [ ] - `p1` - DB: SELECT FROM users WHERE email = :email OR (oauth_provider = 'google' AND oauth_id = :oauth_id) - `inst-find-oauth-user`
-6. [ ] - `p1` - **IF** user not found **THEN** - `inst-create-oauth-user`
-   1. [ ] - `p1` - DB: INSERT INTO users (email, oauth_provider, oauth_id, status, created_at, updated_at) - `inst-insert-oauth-user`
-7. [ ] - `p1` - **ELSE IF** user found by email but no oauth_id **THEN** - `inst-link-oauth`
-   1. [ ] - `p1` - DB: UPDATE users SET oauth_provider = 'google', oauth_id = :oauth_id WHERE id = :id - `inst-update-oauth-link`
-8. [ ] - `p1` - Algorithm: generate JWT using `cpt-ai-chat-via-cyber-pilot-algo-user-auth-generate-jwt` - `inst-generate-jwt-oauth`
-9. [ ] - `p1` - Algorithm: store session using `cpt-ai-chat-via-cyber-pilot-algo-user-auth-store-session` - `inst-store-session-oauth`
-10. [ ] - `p1` - **RETURN** JWT token and user info - `inst-return-token-oauth`
+1. [x] - `p1` - User submits Google OAuth token via POST /api/v1/auth/oauth/google - `inst-submit-oauth`
+2. [x] - `p1` - Verify OAuth token with Google API - `inst-verify-oauth-token`
+3. [x] - `p1` - **IF** token invalid **THEN** return 401 Unauthorized - `inst-oauth-invalid`
+4. [x] - `p1` - Extract email and oauth_id from token payload - `inst-extract-oauth-profile`
+5. [x] - `p1` - DB: SELECT FROM users WHERE email = :email OR (oauth_provider = 'google' AND oauth_id = :oauth_id) - `inst-find-oauth-user`
+6. [x] - `p1` - **IF** user not found **THEN** - `inst-create-oauth-user`
+   1. [x] - `p1` - DB: INSERT INTO users (email, oauth_provider, oauth_id, status, created_at, updated_at) - `inst-insert-oauth-user`
+7. [x] - `p1` - **ELSE IF** user found by email but no oauth_id **THEN** - `inst-link-oauth`
+   1. [x] - `p1` - DB: UPDATE users SET oauth_provider = 'google', oauth_id = :oauth_id WHERE id = :id - `inst-update-oauth-link`
+8. [x] - `p1` - Algorithm: generate JWT using `cpt-ai-chat-via-cyber-pilot-algo-user-auth-generate-jwt` - `inst-generate-jwt-oauth`
+9. [x] - `p1` - Algorithm: store session using `cpt-ai-chat-via-cyber-pilot-algo-user-auth-store-session` - `inst-store-session-oauth`
+10. [x] - `p1` - **RETURN** JWT token and user info - `inst-return-token-oauth`
 
 ### Logout Flow
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-flow-user-auth-logout`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-flow-user-auth-logout`
 
 **Actor**: `cpt-ai-chat-via-cyber-pilot-actor-user`
 
@@ -132,14 +132,14 @@ This feature provides the authentication layer that enables user-specific featur
 - Invalid token — return 401 Unauthorized (but still clear client)
 
 **Steps**:
-1. [ ] - `p1` - User submits POST /api/v1/auth/logout with JWT - `inst-submit-logout`
-2. [ ] - `p1` - Extract session ID from JWT - `inst-extract-session-id`
-3. [ ] - `p1` - REDIS: DEL session:{session_id} - `inst-delete-session`
-4. [ ] - `p1` - **RETURN** 200 OK - `inst-return-logout-ok`
+1. [x] - `p1` - User submits POST /api/v1/auth/logout with JWT - `inst-submit-logout`
+2. [x] - `p1` - Extract session ID from JWT - `inst-extract-session-id`
+3. [x] - `p1` - REDIS: DEL session:{session_id} - `inst-delete-session`
+4. [x] - `p1` - **RETURN** 200 OK - `inst-return-logout-ok`
 
 ### Get Current User Flow
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-flow-user-auth-me`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-flow-user-auth-me`
 
 **Actor**: `cpt-ai-chat-via-cyber-pilot-actor-user`
 
@@ -150,87 +150,87 @@ This feature provides the authentication layer that enables user-specific featur
 - Invalid/expired token — return 401 Unauthorized
 
 **Steps**:
-1. [ ] - `p1` - User submits GET /api/v1/auth/me with JWT - `inst-submit-me`
-2. [ ] - `p1` - Algorithm: validate JWT using `cpt-ai-chat-via-cyber-pilot-algo-user-auth-validate-jwt` - `inst-validate-jwt-me`
-3. [ ] - `p1` - DB: SELECT FROM users WHERE id = :user_id - `inst-fetch-user-me`
-4. [ ] - `p1` - **RETURN** user info (id, email, settings, status) - `inst-return-user-info`
+1. [x] - `p1` - User submits GET /api/v1/auth/me with JWT - `inst-submit-me`
+2. [x] - `p1` - Algorithm: validate JWT using `cpt-ai-chat-via-cyber-pilot-algo-user-auth-validate-jwt` - `inst-validate-jwt-me`
+3. [x] - `p1` - DB: SELECT FROM users WHERE id = :user_id - `inst-fetch-user-me`
+4. [x] - `p1` - **RETURN** user info (id, email, settings, status) - `inst-return-user-info`
 
 ## 3. Processes / Business Logic (CDSL)
 
 ### Hash Password
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-algo-user-auth-hash-password`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-algo-user-auth-hash-password`
 
 **Input**: Plain text password
 
 **Output**: Bcrypt hash string
 
 **Steps**:
-1. [ ] - `p1` - Generate salt with cost factor 12 - `inst-generate-salt`
-2. [ ] - `p1` - Hash password with bcrypt using salt - `inst-bcrypt-hash`
-3. [ ] - `p1` - **RETURN** hash string - `inst-return-hash`
+1. [x] - `p1` - Generate salt with cost factor 12 - `inst-generate-salt`
+2. [x] - `p1` - Hash password with bcrypt using salt - `inst-bcrypt-hash`
+3. [x] - `p1` - **RETURN** hash string - `inst-return-hash`
 
 ### Verify Password
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-algo-user-auth-verify-password`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-algo-user-auth-verify-password`
 
 **Input**: Plain text password, stored hash
 
 **Output**: Boolean (valid/invalid)
 
 **Steps**:
-1. [ ] - `p1` - Compare password against hash using bcrypt.compare - `inst-bcrypt-compare`
-2. [ ] - `p1` - **RETURN** comparison result - `inst-return-compare-result`
+1. [x] - `p1` - Compare password against hash using bcrypt.compare - `inst-bcrypt-compare`
+2. [x] - `p1` - **RETURN** comparison result - `inst-return-compare-result`
 
 ### Generate JWT
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-algo-user-auth-generate-jwt`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-algo-user-auth-generate-jwt`
 
 **Input**: User ID, email
 
 **Output**: Signed JWT string
 
 **Steps**:
-1. [ ] - `p1` - Generate unique session ID (UUID) - `inst-generate-session-id`
-2. [ ] - `p1` - Build claims: sub (user_id), email, sid (session_id), iat, exp (24h) - `inst-build-claims`
-3. [ ] - `p1` - Sign JWT with HS256 using JWT_SECRET - `inst-sign-jwt`
-4. [ ] - `p1` - **RETURN** signed token - `inst-return-jwt`
+1. [x] - `p1` - Generate unique session ID (UUID) - `inst-generate-session-id`
+2. [x] - `p1` - Build claims: sub (user_id), email, sid (session_id), iat, exp (24h) - `inst-build-claims`
+3. [x] - `p1` - Sign JWT with HS256 using JWT_SECRET - `inst-sign-jwt`
+4. [x] - `p1` - **RETURN** signed token - `inst-return-jwt`
 
 ### Validate JWT
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-algo-user-auth-validate-jwt`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-algo-user-auth-validate-jwt`
 
 **Input**: JWT token string
 
 **Output**: Decoded claims or error
 
 **Steps**:
-1. [ ] - `p1` - Verify JWT signature using JWT_SECRET - `inst-verify-signature`
-2. [ ] - `p1` - **IF** signature invalid **THEN** throw AuthError - `inst-invalid-signature`
-3. [ ] - `p1` - Check exp claim for expiration - `inst-check-expiration`
-4. [ ] - `p1` - **IF** expired **THEN** throw AuthError - `inst-token-expired`
-5. [ ] - `p1` - REDIS: GET session:{sid} to verify session exists - `inst-check-session-exists`
-6. [ ] - `p1` - **IF** session not found **THEN** throw AuthError - `inst-session-not-found`
-7. [ ] - `p1` - **RETURN** decoded claims - `inst-return-claims`
+1. [x] - `p1` - Verify JWT signature using JWT_SECRET - `inst-verify-signature`
+2. [x] - `p1` - **IF** signature invalid **THEN** throw AuthError - `inst-invalid-signature`
+3. [x] - `p1` - Check exp claim for expiration - `inst-check-expiration`
+4. [x] - `p1` - **IF** expired **THEN** throw AuthError - `inst-token-expired`
+5. [x] - `p1` - REDIS: GET session:{sid} to verify session exists - `inst-check-session-exists`
+6. [x] - `p1` - **IF** session not found **THEN** throw AuthError - `inst-session-not-found`
+7. [x] - `p1` - **RETURN** decoded claims - `inst-return-claims`
 
 ### Store Session
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-algo-user-auth-store-session`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-algo-user-auth-store-session`
 
 **Input**: Session ID, user ID
 
 **Output**: Session stored in Redis
 
 **Steps**:
-1. [ ] - `p1` - Build session data: user_id, created_at, last_active - `inst-build-session-data`
-2. [ ] - `p1` - REDIS: SET session:{session_id} with TTL 24h - `inst-redis-set-session`
-3. [ ] - `p1` - **RETURN** success - `inst-return-session-stored`
+1. [x] - `p1` - Build session data: user_id, created_at, last_active - `inst-build-session-data`
+2. [x] - `p1` - REDIS: SET session:{session_id} with TTL 24h - `inst-redis-set-session`
+3. [x] - `p1` - **RETURN** success - `inst-return-session-stored`
 
 ## 4. States (CDSL)
 
 ### User Session State
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-state-user-session`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-state-user-session`
 
 ```
 [Anonymous] --register/login--> [Authenticated] --logout/expire--> [Anonymous]
@@ -254,7 +254,7 @@ This feature provides the authentication layer that enables user-specific featur
 
 ### User Registration Endpoint
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-dod-user-auth-register-endpoint`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-dod-user-auth-register-endpoint`
 
 The system **MUST** expose POST /api/v1/auth/register that accepts email and password, validates input, creates user with hashed password, and returns JWT.
 
@@ -273,7 +273,7 @@ The system **MUST** expose POST /api/v1/auth/register that accepts email and pas
 
 ### User Login Endpoint
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-dod-user-auth-login-endpoint`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-dod-user-auth-login-endpoint`
 
 The system **MUST** expose POST /api/v1/auth/login that accepts email and password, verifies credentials, and returns JWT.
 
@@ -293,7 +293,7 @@ The system **MUST** expose POST /api/v1/auth/login that accepts email and passwo
 
 ### OAuth Google Endpoint
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-dod-user-auth-oauth-endpoint`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-dod-user-auth-oauth-endpoint`
 
 The system **MUST** expose POST /api/v1/auth/oauth/google that accepts Google OAuth token, verifies with Google, creates/links user, and returns JWT.
 
@@ -313,7 +313,7 @@ The system **MUST** expose POST /api/v1/auth/oauth/google that accepts Google OA
 
 ### Logout Endpoint
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-dod-user-auth-logout-endpoint`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-dod-user-auth-logout-endpoint`
 
 The system **MUST** expose POST /api/v1/auth/logout that invalidates the session in Redis.
 
@@ -332,7 +332,7 @@ The system **MUST** expose POST /api/v1/auth/logout that invalidates the session
 
 ### JWT Middleware
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-dod-user-auth-jwt-middleware`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-dod-user-auth-jwt-middleware`
 
 The system **MUST** have middleware that validates JWT on protected routes, extracts user context, and rejects invalid/expired tokens with 401.
 
@@ -349,7 +349,7 @@ The system **MUST** have middleware that validates JWT on protected routes, extr
 
 ### Session Management
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-dod-user-auth-session-mgmt`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-dod-user-auth-session-mgmt`
 
 The system **MUST** store sessions in Redis with 24h TTL, allowing session invalidation on logout and session verification on each request.
 
@@ -365,7 +365,7 @@ The system **MUST** store sessions in Redis with 24h TTL, allowing session inval
 
 ### Password Security
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-dod-user-auth-password-security`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-dod-user-auth-password-security`
 
 The system **MUST** hash passwords using bcrypt with cost factor 12. Plain text passwords must never be stored or logged.
 
