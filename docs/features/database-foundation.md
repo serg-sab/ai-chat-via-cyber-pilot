@@ -65,86 +65,86 @@ This feature provides the data persistence layer that all other features depend 
 
 ### Run Migrations
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-algo-database-foundation-run-migrations`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-algo-database-foundation-run-migrations`
 
 **Input**: Migration directory path, database connection string
 
 **Output**: Migration result (success/failure, applied migrations list)
 
 **Steps**:
-1. [ ] - `p1` - Connect to PostgreSQL using connection string - `inst-connect-db`
-2. [ ] - `p1` - DB: SELECT FROM migrations table to get applied migrations - `inst-get-applied`
-3. [ ] - `p1` - Read migration files from directory, sort by version - `inst-read-files`
-4. [ ] - `p1` - **FOR EACH** migration in pending_migrations - `inst-loop-migrations`
-   1. [ ] - `p1` - **TRY** - `inst-try-migration`
-      1. [ ] - `p1` - Begin transaction - `inst-begin-tx`
-      2. [ ] - `p1` - Execute migration SQL - `inst-exec-sql`
-      3. [ ] - `p1` - DB: INSERT INTO migrations(version, applied_at) - `inst-record-migration`
-      4. [ ] - `p1` - Commit transaction - `inst-commit-tx`
-   2. [ ] - `p1` - **CATCH** error - `inst-catch-error`
-      1. [ ] - `p1` - Rollback transaction - `inst-rollback-tx`
-      2. [ ] - `p1` - **RETURN** error with migration version and details - `inst-return-error`
-5. [ ] - `p1` - **RETURN** success with list of applied migrations - `inst-return-success`
+1. [x] - `p1` - Connect to PostgreSQL using connection string - `inst-connect-db`
+2. [x] - `p1` - DB: SELECT FROM migrations table to get applied migrations - `inst-get-applied`
+3. [x] - `p1` - Read migration files from directory, sort by version - `inst-read-files`
+4. [x] - `p1` - **FOR EACH** migration in pending_migrations - `inst-loop-migrations`
+   1. [x] - `p1` - **TRY** - `inst-try-migration`
+      1. [x] - `p1` - Begin transaction - `inst-begin-tx`
+      2. [x] - `p1` - Execute migration SQL - `inst-exec-sql`
+      3. [x] - `p1` - DB: INSERT INTO migrations(version, applied_at) - `inst-record-migration`
+      4. [x] - `p1` - Commit transaction - `inst-commit-tx`
+   2. [x] - `p1` - **CATCH** error - `inst-catch-error`
+      1. [x] - `p1` - Rollback transaction - `inst-rollback-tx`
+      2. [x] - `p1` - **RETURN** error with migration version and details - `inst-return-error`
+5. [x] - `p1` - **RETURN** success with list of applied migrations - `inst-return-success`
 
 ### Create Users Table
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-algo-database-foundation-create-users`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-algo-database-foundation-create-users`
 
 **Input**: None (DDL migration)
 
 **Output**: users table created
 
 **Steps**:
-1. [ ] - `p1` - DB: CREATE TABLE users with columns (id UUID PRIMARY KEY, email VARCHAR(255) UNIQUE, password_hash VARCHAR(255), oauth_provider VARCHAR(50), oauth_id VARCHAR(255), settings JSONB, status VARCHAR(20), created_at TIMESTAMPTZ, updated_at TIMESTAMPTZ) - `inst-create-users-table`
-2. [ ] - `p1` - DB: CREATE INDEX idx_users_email ON users(email) - `inst-create-users-email-idx`
-3. [ ] - `p1` - DB: ADD CONSTRAINT check_status CHECK (status IN ('active', 'suspended', 'deleted')) - `inst-add-status-check`
-4. [ ] - `p1` - **RETURN** table created - `inst-return-users-created`
+1. [x] - `p1` - DB: CREATE TABLE users with columns (id UUID PRIMARY KEY, email VARCHAR(255) UNIQUE, password_hash VARCHAR(255), oauth_provider VARCHAR(50), oauth_id VARCHAR(255), settings JSONB, status VARCHAR(20), created_at TIMESTAMPTZ, updated_at TIMESTAMPTZ) - `inst-create-users-table`
+2. [x] - `p1` - DB: CREATE INDEX idx_users_email ON users(email) - `inst-create-users-email-idx`
+3. [x] - `p1` - DB: ADD CONSTRAINT check_status CHECK (status IN ('active', 'suspended', 'deleted')) - `inst-add-status-check`
+4. [x] - `p1` - **RETURN** table created - `inst-return-users-created`
 
 ### Create Conversations Table
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-algo-database-foundation-create-conversations`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-algo-database-foundation-create-conversations`
 
 **Input**: None (DDL migration)
 
 **Output**: conversations table created
 
 **Steps**:
-1. [ ] - `p1` - DB: CREATE TABLE conversations with columns (id UUID PRIMARY KEY, user_id UUID REFERENCES users(id) ON DELETE CASCADE, title VARCHAR(255), message_count INTEGER DEFAULT 0, created_at TIMESTAMPTZ, updated_at TIMESTAMPTZ, deleted_at TIMESTAMPTZ) - `inst-create-conversations-table`
-2. [ ] - `p1` - DB: CREATE INDEX idx_conversations_user_id ON conversations(user_id) - `inst-create-conv-user-idx`
-3. [ ] - `p1` - DB: CREATE INDEX idx_conversations_updated_at ON conversations(updated_at DESC) - `inst-create-conv-updated-idx`
-4. [ ] - `p1` - **RETURN** table created - `inst-return-conversations-created`
+1. [x] - `p1` - DB: CREATE TABLE conversations with columns (id UUID PRIMARY KEY, user_id UUID REFERENCES users(id) ON DELETE CASCADE, title VARCHAR(255), message_count INTEGER DEFAULT 0, created_at TIMESTAMPTZ, updated_at TIMESTAMPTZ, deleted_at TIMESTAMPTZ) - `inst-create-conversations-table`
+2. [x] - `p1` - DB: CREATE INDEX idx_conversations_user_id ON conversations(user_id) - `inst-create-conv-user-idx`
+3. [x] - `p1` - DB: CREATE INDEX idx_conversations_updated_at ON conversations(updated_at DESC) - `inst-create-conv-updated-idx`
+4. [x] - `p1` - **RETURN** table created - `inst-return-conversations-created`
 
 ### Create Messages Table
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-algo-database-foundation-create-messages`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-algo-database-foundation-create-messages`
 
 **Input**: None (DDL migration)
 
 **Output**: messages table created
 
 **Steps**:
-1. [ ] - `p1` - DB: CREATE TABLE messages with columns (id UUID PRIMARY KEY, conversation_id UUID REFERENCES conversations(id) ON DELETE CASCADE, role VARCHAR(20), content TEXT, metadata JSONB, parent_message_id UUID, created_at TIMESTAMPTZ) - `inst-create-messages-table`
-2. [ ] - `p1` - DB: ADD CONSTRAINT check_role CHECK (role IN ('user', 'assistant', 'system')) - `inst-add-role-check`
-3. [ ] - `p1` - DB: CREATE INDEX idx_messages_conversation_id ON messages(conversation_id) - `inst-create-msg-conv-idx`
-4. [ ] - `p1` - DB: CREATE INDEX idx_messages_created_at ON messages(created_at) - `inst-create-msg-created-idx`
-5. [ ] - `p1` - **RETURN** table created - `inst-return-messages-created`
+1. [x] - `p1` - DB: CREATE TABLE messages with columns (id UUID PRIMARY KEY, conversation_id UUID REFERENCES conversations(id) ON DELETE CASCADE, role VARCHAR(20), content TEXT, metadata JSONB, parent_message_id UUID, created_at TIMESTAMPTZ) - `inst-create-messages-table`
+2. [x] - `p1` - DB: ADD CONSTRAINT check_role CHECK (role IN ('user', 'assistant', 'system')) - `inst-add-role-check`
+3. [x] - `p1` - DB: CREATE INDEX idx_messages_conversation_id ON messages(conversation_id) - `inst-create-msg-conv-idx`
+4. [x] - `p1` - DB: CREATE INDEX idx_messages_created_at ON messages(created_at) - `inst-create-msg-created-idx`
+5. [x] - `p1` - **RETURN** table created - `inst-return-messages-created`
 
 ### Configure Connection Pool
 
-- [ ] `p2` - **ID**: `cpt-ai-chat-via-cyber-pilot-algo-database-foundation-config-pool`
+- [x] `p2` - **ID**: `cpt-ai-chat-via-cyber-pilot-algo-database-foundation-config-pool`
 
 **Input**: Pool configuration (min, max, idle timeout)
 
 **Output**: Connection pool configured
 
 **Steps**:
-1. [ ] - `p2` - Set minimum pool size (default: 2) - `inst-set-min-pool`
-2. [ ] - `p2` - Set maximum pool size (default: 10) - `inst-set-max-pool`
-3. [ ] - `p2` - Set idle timeout (default: 30000ms) - `inst-set-idle-timeout`
-4. [ ] - `p2` - Set connection timeout (default: 5000ms) - `inst-set-conn-timeout`
-5. [ ] - `p2` - Initialize pool with settings - `inst-init-pool`
-6. [ ] - `p2` - Test pool with health check query - `inst-test-pool`
-7. [ ] - `p2` - **RETURN** pool ready - `inst-return-pool-ready`
+1. [x] - `p2` - Set minimum pool size (default: 2) - `inst-set-min-pool`
+2. [x] - `p2` - Set maximum pool size (default: 10) - `inst-set-max-pool`
+3. [x] - `p2` - Set idle timeout (default: 30000ms) - `inst-set-idle-timeout`
+4. [x] - `p2` - Set connection timeout (default: 5000ms) - `inst-set-conn-timeout`
+5. [x] - `p2` - Initialize pool with settings - `inst-init-pool`
+6. [x] - `p2` - Test pool with health check query - `inst-test-pool`
+7. [x] - `p2` - **RETURN** pool ready - `inst-return-pool-ready`
 
 ## 4. States (CDSL)
 
