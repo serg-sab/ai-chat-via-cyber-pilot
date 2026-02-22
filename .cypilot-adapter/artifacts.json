@@ -1,0 +1,20 @@
+{
+  "version": "1.0",
+  "project_root": "..",
+  "kits": {
+    "cypilot-sdlc": {
+      "format": "Cypilot",
+      "path": "cypilot/kits/sdlc"
+    }
+  },
+  "systems": [
+    {
+      "name": "ai-chat-via-cyber-pilot",
+      "slug": "ai-chat-via-cyber-pilot",
+      "kit": "cypilot-sdlc",
+      "artifacts": [],
+      "codebase": [],
+      "children": []
+    }
+  ]
+}
