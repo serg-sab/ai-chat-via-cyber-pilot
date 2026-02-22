@@ -40,6 +40,10 @@
         {
           "path": "docs/features/chat-core.md",
           "kind": "FEATURE"
+        },
+        {
+          "path": "docs/features/content-moderation.md",
+          "kind": "FEATURE"
         }
       ],
       "codebase": [],
