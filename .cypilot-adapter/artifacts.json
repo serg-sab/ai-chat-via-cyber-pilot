@@ -32,6 +32,10 @@
         {
           "path": "docs/features/user-auth.md",
           "kind": "FEATURE"
+        },
+        {
+          "path": "docs/features/conversation-mgmt.md",
+          "kind": "FEATURE"
         }
       ],
       "codebase": [],
