@@ -129,7 +129,7 @@ None beyond standard web application requirements.
 
 #### FR-CHAT-001 New Conversation
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-fr-new-chat`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-fr-new-chat`
 
 The system MUST allow users to create a new conversation. "New chat" clears the current thread and starts a new conversation with a unique identifier.
 
@@ -139,7 +139,7 @@ The system MUST allow users to create a new conversation. "New chat" clears the 
 
 #### FR-CHAT-002 Send and Receive Messages
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-fr-send-message`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-fr-send-message`
 
 The system MUST allow users to send messages and receive assistant responses. User messages appear instantly in the UI; assistant responses appear as they are generated.
 
@@ -149,7 +149,7 @@ The system MUST allow users to send messages and receive assistant responses. Us
 
 #### FR-CHAT-003 Streaming Responses
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-fr-streaming`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-fr-streaming`
 
 The system MUST stream assistant responses token-by-token or chunk-by-chunk. Partial response MUST be visible within 500ms–1500ms of request start (depending on model latency).
 
@@ -159,7 +159,7 @@ The system MUST stream assistant responses token-by-token or chunk-by-chunk. Par
 
 #### FR-CHAT-004 Stop and Regenerate
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-fr-stop-regen`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-fr-stop-regen`
 
 The system MUST allow users to stop generation mid-stream. The system MUST allow users to regenerate the last assistant response. Stop halts streaming within approximately 1 second; Regenerate replaces or branches from the last turn.
 
@@ -179,7 +179,7 @@ The system MUST allow users to edit a previous user message and re-run from that
 
 #### FR-CHAT-006 Message Formatting
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-fr-formatting`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-fr-formatting`
 
 The system MUST render Markdown including headings, lists, tables, and links. The system MUST render code blocks with syntax highlighting and a copy button. Markdown MUST be rendered safely without script injection.
 
@@ -191,7 +191,7 @@ The system MUST render Markdown including headings, lists, tables, and links. Th
 
 #### FR-HIST-001 Persist Conversations
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-fr-persist-history`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-fr-persist-history`
 
 The system MUST persist conversations for logged-in users. Reloading the page shows prior conversations.
 
@@ -201,7 +201,7 @@ The system MUST persist conversations for logged-in users. Reloading the page sh
 
 #### FR-HIST-002 Sidebar Conversation List
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-fr-sidebar-list`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-fr-sidebar-list`
 
 The system MUST display a sidebar list of conversations with title and last updated time. New chats auto-title after the first assistant response, or users can rename manually.
 
@@ -211,7 +211,7 @@ The system MUST display a sidebar list of conversations with title and last upda
 
 #### FR-HIST-003 Rename and Delete Conversations
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-fr-rename-delete`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-fr-rename-delete`
 
 The system MUST allow users to rename and delete conversations. Delete removes from UI; backend retains per retention policy.
 
@@ -221,7 +221,7 @@ The system MUST allow users to rename and delete conversations. Delete removes f
 
 #### FR-HIST-004 Search Conversations
 
-- [ ] `p2` - **ID**: `cpt-ai-chat-via-cyber-pilot-fr-search`
+- [x] `p2` - **ID**: `cpt-ai-chat-via-cyber-pilot-fr-search`
 
 The system MUST allow users to search conversation titles and message content. Query returns matching threads within 1 second for typical user history.
 
@@ -233,7 +233,7 @@ The system MUST allow users to search conversation titles and message content. Q
 
 #### FR-AUTH-001 User Authentication
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-fr-auth`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-fr-auth`
 
 The system MUST support authentication via email and password or OAuth (Google). Logged-in state persists across sessions; sign-out works reliably.
 
@@ -265,7 +265,7 @@ The system MUST provide "Improve the model" opt-in/out toggle (if training on us
 
 #### FR-MODEL-001 LLM Provider Integration
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-fr-llm-routing`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-fr-llm-routing`
 
 The system MUST support at least one LLM provider and model. Requests route to the model reliably with retry and exponential backoff on failures.
 
@@ -275,7 +275,7 @@ The system MUST support at least one LLM provider and model. Requests route to t
 
 #### FR-MODEL-002 Context Management
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-fr-context-mgmt`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-fr-context-mgmt`
 
 The system MUST maintain conversation state across turns. The system MUST apply a context window strategy (truncation, summarization, or retrieval) to handle long conversations. Multi-turn coherence MUST be maintained in typical 20–50 turn chats.
 
@@ -285,7 +285,7 @@ The system MUST maintain conversation state across turns. The system MUST apply 
 
 #### FR-MODEL-003 System Instructions
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-fr-system-prompt`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-fr-system-prompt`
 
 The system MUST apply a system prompt and app policy to every conversation. Policy is non-user-editable; changes are versioned.
 
@@ -295,7 +295,7 @@ The system MUST apply a system prompt and app policy to every conversation. Poli
 
 #### FR-MODEL-004 Rate Limiting
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-fr-rate-limiting`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-fr-rate-limiting`
 
 The system MUST enforce per-user and per-IP rate limits. Anonymous users get stricter limits than authenticated users. Abuse MUST NOT degrade service for normal users.
 
@@ -307,7 +307,7 @@ The system MUST enforce per-user and per-IP rate limits. Anonymous users get str
 
 #### FR-SAFE-001 Content Moderation
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-fr-moderation`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-fr-moderation`
 
 The system MUST moderate input and output content. Disallowed content MUST be blocked or flagged. The system SHOULD provide safe completion alternatives when content is refused.
 
@@ -317,7 +317,7 @@ The system MUST moderate input and output content. Disallowed content MUST be bl
 
 #### FR-SAFE-002 User Reporting
 
-- [ ] `p2` - **ID**: `cpt-ai-chat-via-cyber-pilot-fr-reporting`
+- [x] `p2` - **ID**: `cpt-ai-chat-via-cyber-pilot-fr-reporting`
 
 The system MUST provide a "Report" button on assistant messages. Reports capture conversation snippet and metadata and appear in admin console.
 
@@ -329,7 +329,7 @@ The system MUST provide a "Report" button on assistant messages. Reports capture
 
 #### FR-ADMIN-001 Metrics Dashboard
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-fr-dashboard`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-fr-dashboard`
 
 The system MUST provide an admin dashboard showing request volume, latency, error rate, and token usage/cost estimate by day. Top users by usage shown in privacy-aware manner. Metrics updated near-real-time.
 
@@ -339,7 +339,7 @@ The system MUST provide an admin dashboard showing request volume, latency, erro
 
 #### FR-ADMIN-002 Logs and Tracing
 
-- [ ] `p2` - **ID**: `cpt-ai-chat-via-cyber-pilot-fr-logs`
+- [x] `p2` - **ID**: `cpt-ai-chat-via-cyber-pilot-fr-logs`
 
 The system MUST correlate UI request to backend to model provider in logs. Sensitive content redacted by default; gated access for support.
 
@@ -349,7 +349,7 @@ The system MUST correlate UI request to backend to model provider in logs. Sensi
 
 #### FR-ADMIN-003 Incident Controls
 
-- [ ] `p2` - **ID**: `cpt-ai-chat-via-cyber-pilot-fr-incident-controls`
+- [x] `p2` - **ID**: `cpt-ai-chat-via-cyber-pilot-fr-incident-controls`
 
 The system MUST provide a kill switch for a model or provider. The system MUST support feature flags for streaming, attachments, and other features.
 
@@ -363,7 +363,7 @@ The system MUST provide a kill switch for a model or provider. The system MUST s
 
 #### Performance
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-nfr-performance`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-nfr-performance`
 
 The system MUST achieve P95 time-to-first-token under 2 seconds. The system MUST achieve P95 end-to-end response time under 8 seconds for short answers. Backend latency excluding model MUST be under 300ms at P95.
 
@@ -373,7 +373,7 @@ The system MUST achieve P95 time-to-first-token under 2 seconds. The system MUST
 
 #### Availability
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-nfr-availability`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-nfr-availability`
 
 The system MUST achieve 99.5% uptime for MVP. The system MUST degrade gracefully if LLM provider is down, showing a friendly error or fallback.
 
@@ -383,7 +383,7 @@ The system MUST achieve 99.5% uptime for MVP. The system MUST degrade gracefully
 
 #### Security
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-nfr-security`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-nfr-security`
 
 The system MUST address OWASP Top 10 vulnerabilities. The system MUST implement strong CSP, XSS protections, and CSRF protections. Secrets MUST be stored in a vault with key rotation. All traffic MUST use TLS encryption in transit. Data at rest MUST be encrypted.
 
@@ -393,7 +393,7 @@ The system MUST address OWASP Top 10 vulnerabilities. The system MUST implement 
 
 #### Scalability
 
-- [ ] `p2` - **ID**: `cpt-ai-chat-via-cyber-pilot-nfr-scalability`
+- [x] `p2` - **ID**: `cpt-ai-chat-via-cyber-pilot-nfr-scalability`
 
 The system MUST support 500 concurrent active users for MVP. Error rate MUST be under 1% excluding explicit safety refusals.
 

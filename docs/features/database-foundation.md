@@ -36,7 +36,7 @@ This feature provides the data persistence layer that all other features depend 
 
 ### Database Setup Flow
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-flow-database-foundation-setup`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-flow-database-foundation-setup`
 
 **Actor**: `cpt-ai-chat-via-cyber-pilot-actor-admin`
 
@@ -51,15 +51,15 @@ This feature provides the data persistence layer that all other features depend 
 - Migration fails — rollback and check SQL syntax
 
 **Steps**:
-1. [ ] - `p1` - Admin provisions PostgreSQL database instance - `inst-provision-pg`
-2. [ ] - `p1` - Admin provisions Redis instance - `inst-provision-redis`
-3. [ ] - `p1` - Admin configures database connection string in environment - `inst-config-env`
-4. [ ] - `p1` - Admin runs migration tool to apply schema - `inst-run-migrations`
-5. [ ] - `p1` - Algorithm: execute migrations using `cpt-ai-chat-via-cyber-pilot-algo-database-foundation-run-migrations` - `inst-exec-migrations`
-6. [ ] - `p1` - Admin verifies tables exist with correct structure - `inst-verify-tables`
-7. [ ] - `p1` - Admin configures connection pool settings - `inst-config-pool`
-8. [ ] - `p1` - Admin tests database connectivity from application - `inst-test-connectivity`
-9. [ ] - `p1` - **RETURN** database ready for application use - `inst-return-ready`
+1. [x] - `p1` - Admin provisions PostgreSQL database instance - `inst-provision-pg`
+2. [x] - `p1` - Admin provisions Redis instance - `inst-provision-redis`
+3. [x] - `p1` - Admin configures database connection string in environment - `inst-config-env`
+4. [x] - `p1` - Admin runs migration tool to apply schema - `inst-run-migrations`
+5. [x] - `p1` - Algorithm: execute migrations using `cpt-ai-chat-via-cyber-pilot-algo-database-foundation-run-migrations` - `inst-exec-migrations`
+6. [x] - `p1` - Admin verifies tables exist with correct structure - `inst-verify-tables`
+7. [x] - `p1` - Admin configures connection pool settings - `inst-config-pool`
+8. [x] - `p1` - Admin tests database connectivity from application - `inst-test-connectivity`
+9. [x] - `p1` - **RETURN** database ready for application use - `inst-return-ready`
 
 ## 3. Processes / Business Logic (CDSL)
 

@@ -21,6 +21,23 @@ Key architectural decisions include stateless API design for horizontal scaling,
 | `cpt-ai-chat-via-cyber-pilot-fr-rate-limiting` | Redis-backed rate limiter with per-user and per-IP sliding windows |
 | `cpt-ai-chat-via-cyber-pilot-fr-moderation` | Moderation service integration for input/output filtering |
 | `cpt-ai-chat-via-cyber-pilot-fr-persist-history` | PostgreSQL persistence with conversation/message tables |
+| `cpt-ai-chat-via-cyber-pilot-fr-new-chat` | New conversation creation with unique ID; clears current thread |
+| `cpt-ai-chat-via-cyber-pilot-fr-send-message` | Message handling with instant UI display; assistant response streaming |
+| `cpt-ai-chat-via-cyber-pilot-fr-stop-regen` | Abort controller for stream cancellation; regenerate replaces last turn |
+| `cpt-ai-chat-via-cyber-pilot-fr-formatting` | React-Markdown with syntax highlighting; safe HTML rendering |
+| `cpt-ai-chat-via-cyber-pilot-fr-sidebar-list` | Conversation list component with auto-title generation |
+| `cpt-ai-chat-via-cyber-pilot-fr-rename-delete` | PATCH/DELETE endpoints for conversation management |
+| `cpt-ai-chat-via-cyber-pilot-fr-auth` | JWT-based auth with email/password and Google OAuth support |
+| `cpt-ai-chat-via-cyber-pilot-fr-llm-routing` | LLM adapter with OpenAI SDK; retry with exponential backoff |
+| `cpt-ai-chat-via-cyber-pilot-fr-system-prompt` | Configurable system prompt via environment variable |
+| `cpt-ai-chat-via-cyber-pilot-fr-search` | Full-text search on conversation titles and message content via PostgreSQL |
+| `cpt-ai-chat-via-cyber-pilot-fr-reporting` | Report button on messages; reports stored in DB and shown in admin console |
+| `cpt-ai-chat-via-cyber-pilot-fr-dashboard` | Admin metrics panel with request volume, latency, errors, token usage |
+| `cpt-ai-chat-via-cyber-pilot-fr-logs` | Structured logging with request correlation IDs across services |
+| `cpt-ai-chat-via-cyber-pilot-fr-incident-controls` | Feature flags and kill switch stored in Redis; admin API for toggling |
+| `cpt-ai-chat-via-cyber-pilot-fr-edit-resend` | Message branching support in conversation model (deferred to Phase 2) |
+| `cpt-ai-chat-via-cyber-pilot-fr-user-settings` | User settings stored in users table; theme and model preferences |
+| `cpt-ai-chat-via-cyber-pilot-fr-privacy` | Account deletion flow; opt-in/out toggle in user settings |
 
 #### NFR Allocation
 
@@ -78,7 +95,7 @@ Key architectural decisions include stateless API design for horizontal scaling,
 └─────────────────────────────────────────────────────────────┘
 ```
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-tech-layered-architecture`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-tech-layered-architecture`
 
 | Layer | Responsibility | Technology |
 |-------|---------------|------------|
@@ -94,7 +111,7 @@ Key architectural decisions include stateless API design for horizontal scaling,
 
 #### Streaming-First Design
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-principle-streaming-first`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-principle-streaming-first`
 
 All response delivery paths are designed for streaming from the ground up. The LLM adapter streams tokens as they arrive, the API layer relays chunks via SSE, and the UI renders incrementally. No buffering of complete responses before display.
 
@@ -102,7 +119,7 @@ All response delivery paths are designed for streaming from the ground up. The L
 
 #### Stateless API Servers
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-principle-stateless-api`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-principle-stateless-api`
 
 API servers maintain no local state between requests. All session data lives in Redis, all persistent data in PostgreSQL. Any API instance can handle any request.
 
@@ -110,7 +127,7 @@ API servers maintain no local state between requests. All session data lives in 
 
 #### Graceful Degradation
 
-- [ ] `p2` - **ID**: `cpt-ai-chat-via-cyber-pilot-principle-graceful-degradation`
+- [x] `p2` - **ID**: `cpt-ai-chat-via-cyber-pilot-principle-graceful-degradation`
 
 When external dependencies fail (LLM provider, moderation service), the system degrades gracefully with clear user feedback rather than hard failures. Circuit breakers prevent cascade failures.
 
@@ -120,19 +137,19 @@ When external dependencies fail (LLM provider, moderation service), the system d
 
 #### LLM Provider Dependency
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-constraint-llm-dependency`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-constraint-llm-dependency`
 
 The system depends on external LLM provider APIs for core functionality. Provider outages directly impact chat capability. Mitigation: circuit breakers, retry with backoff, friendly error messages.
 
 #### Context Window Limits
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-constraint-context-window`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-constraint-context-window`
 
 LLM context windows are finite (typically 4K-128K tokens). Long conversations require truncation or summarization strategies. Design must track token counts and apply context management transparently.
 
 #### Rate Limit Budgets
 
-- [ ] `p2` - **ID**: `cpt-ai-chat-via-cyber-pilot-constraint-rate-limits`
+- [x] `p2` - **ID**: `cpt-ai-chat-via-cyber-pilot-constraint-rate-limits`
 
 LLM provider rate limits and cost constraints require per-user quotas. Anonymous users get stricter limits. System must enforce limits without degrading experience for normal usage patterns.
 
@@ -265,7 +282,7 @@ graph TB
 
 #### Chat UI
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-component-chat-ui`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-component-chat-ui`
 
 ##### Why this component exists
 
@@ -291,7 +308,7 @@ Provides the user-facing interface for all chat interactions, handling message d
 
 #### API Gateway
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-component-api-gateway`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-component-api-gateway`
 
 ##### Why this component exists
 
@@ -318,7 +335,7 @@ Single entry point for all client requests. Handles cross-cutting concerns: auth
 
 #### Chat Service
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-component-chat-service`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-component-chat-service`
 
 ##### Why this component exists
 
@@ -346,7 +363,7 @@ Core business logic for chat operations. Orchestrates conversation management, m
 
 #### Auth Service
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-component-auth-service`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-component-auth-service`
 
 ##### Why this component exists
 
@@ -371,7 +388,7 @@ Handles all authentication and session management. Supports email/password and O
 
 #### Context Manager
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-component-context-manager`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-component-context-manager`
 
 ##### Why this component exists
 
@@ -395,7 +412,7 @@ Manages conversation context for LLM requests. Handles token counting, context w
 
 #### LLM Adapter
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-component-llm-adapter`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-component-llm-adapter`
 
 ##### Why this component exists
 
@@ -420,7 +437,7 @@ Abstracts LLM provider communication. Handles streaming protocol, retries, and p
 
 #### Moderation Service
 
-- [ ] `p2` - **ID**: `cpt-ai-chat-via-cyber-pilot-component-moderation-service`
+- [x] `p2` - **ID**: `cpt-ai-chat-via-cyber-pilot-component-moderation-service`
 
 ##### Why this component exists
 
@@ -532,7 +549,7 @@ data: {"messageId": "uuid", "tokenCount": 15}
 
 #### Send Message Flow
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-seq-send-message`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-seq-send-message`
 
 **Use cases**: `cpt-ai-chat-via-cyber-pilot-usecase-new-chat`, `cpt-ai-chat-via-cyber-pilot-usecase-continue`
 
@@ -585,7 +602,7 @@ sequenceDiagram
 
 #### Authentication Flow
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-seq-auth-login`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-seq-auth-login`
 
 **Use cases**: `cpt-ai-chat-via-cyber-pilot-usecase-new-chat`
 
@@ -619,7 +636,7 @@ sequenceDiagram
 
 #### Table: users
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-dbtable-users`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-dbtable-users`
 
 | Column | Type | Description |
 |--------|------|-------------|
@@ -641,7 +658,7 @@ sequenceDiagram
 
 #### Table: conversations
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-dbtable-conversations`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-dbtable-conversations`
 
 | Column | Type | Description |
 |--------|------|-------------|
@@ -661,7 +678,7 @@ sequenceDiagram
 
 #### Table: messages
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-dbtable-messages`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-dbtable-messages`
 
 | Column | Type | Description |
 |--------|------|-------------|
