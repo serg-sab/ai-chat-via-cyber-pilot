@@ -118,7 +118,28 @@ A full-stack AI chat application with real-time streaming responses, conversatio
 | `REDIS_URL` | Redis connection string | Yes |
 | `JWT_SECRET` | Secret for JWT signing | Yes |
 | `OPENAI_API_KEY` | OpenAI API key | Yes |
+| `GOOGLE_CLIENT_ID` | Google OAuth client ID | No |
+| `VITE_GOOGLE_CLIENT_ID` | Google OAuth client ID (frontend) | No |
 | `PORT` | Server port | No (default: 3000) |
+
+## Google OAuth Setup
+
+To enable "Sign in with Google":
+
+1. Go to [Google Cloud Console](https://console.cloud.google.com/)
+2. Create a new project or select existing
+3. Navigate to **APIs & Services > Credentials**
+4. Click **Create Credentials > OAuth client ID**
+5. Select **Web application**
+6. Add authorized JavaScript origins:
+   - `http://localhost:5173` (development)
+   - Your production domain
+7. Copy the Client ID and add to your `.env`:
+   ```
+   GOOGLE_CLIENT_ID=your-client-id.apps.googleusercontent.com
+   VITE_GOOGLE_CLIENT_ID=your-client-id.apps.googleusercontent.com
+   ```
+8. Restart both backend and frontend servers
 
 ## API Endpoints
 
@@ -126,6 +147,7 @@ A full-stack AI chat application with real-time streaming responses, conversatio
 |--------|----------|-------------|
 | `POST` | `/api/auth/register` | Register new user |
 | `POST` | `/api/auth/login` | Login and get JWT |
+| `POST` | `/api/auth/oauth/google` | Google OAuth login |
 | `GET` | `/api/conversations` | List user conversations |
 | `POST` | `/api/conversations` | Create conversation |
 | `POST` | `/api/conversations/:id/messages` | Send message (SSE stream) |

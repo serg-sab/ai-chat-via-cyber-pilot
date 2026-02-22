@@ -153,29 +153,38 @@ export async function oauthGoogle(input: OAuthGoogleInput): Promise<AuthResponse
   const { token: oauthToken } = input;
   
   // @cpt-begin:cpt-ai-chat-via-cyber-pilot-flow-user-auth-oauth-google:p1:inst-verify-oauth-token
-  // In production, verify token with Google API
-  // For now, decode the token payload (assuming it's a Google ID token)
-  let payload: { email: string; sub: string };
+  // Verify token with Google API using google-auth-library
+  const { OAuth2Client } = await import('google-auth-library');
+  const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
+  
+  if (!GOOGLE_CLIENT_ID) {
+    throw new AuthError('Google OAuth not configured', 500);
+  }
+  
+  const client = new OAuth2Client(GOOGLE_CLIENT_ID);
+  let payload: { email?: string; sub?: string };
+  
   try {
-    // This would be replaced with actual Google token verification
-    // const ticket = await googleClient.verifyIdToken({ idToken: oauthToken, audience: GOOGLE_CLIENT_ID });
-    // payload = ticket.getPayload();
-    
-    // Placeholder: In real implementation, use google-auth-library
-    const parts = oauthToken.split('.');
-    if (parts.length !== 3) {
-      throw new Error('Invalid token format');
+    const ticket = await client.verifyIdToken({
+      idToken: oauthToken,
+      audience: GOOGLE_CLIENT_ID,
+    });
+    const ticketPayload = ticket.getPayload();
+    if (!ticketPayload || !ticketPayload.email || !ticketPayload.sub) {
+      throw new Error('Invalid token payload');
     }
-    payload = JSON.parse(Buffer.from(parts[1], 'base64').toString());
+    payload = { email: ticketPayload.email, sub: ticketPayload.sub };
   } catch (err) {
     // @cpt-begin:cpt-ai-chat-via-cyber-pilot-flow-user-auth-oauth-google:p1:inst-oauth-invalid
+    console.error('Google OAuth verification failed:', err);
     throw new AuthError('Invalid OAuth token', 401);
     // @cpt-end:cpt-ai-chat-via-cyber-pilot-flow-user-auth-oauth-google:p1:inst-oauth-invalid
   }
   // @cpt-end:cpt-ai-chat-via-cyber-pilot-flow-user-auth-oauth-google:p1:inst-verify-oauth-token
   
   // @cpt-begin:cpt-ai-chat-via-cyber-pilot-flow-user-auth-oauth-google:p1:inst-extract-oauth-profile
-  const { email, sub: oauthId } = payload;
+  const email = payload.email!;
+  const oauthId = payload.sub!;
   // @cpt-end:cpt-ai-chat-via-cyber-pilot-flow-user-auth-oauth-google:p1:inst-extract-oauth-profile
   
   const pool = getPool();

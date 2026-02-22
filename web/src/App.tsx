@@ -34,6 +34,7 @@ function App() {
       return (
         <LoginForm
           onLogin={auth.login}
+          onGoogleLogin={auth.loginWithGoogle}
           onSwitchToRegister={() => setAuthMode('register')}
         />
       );

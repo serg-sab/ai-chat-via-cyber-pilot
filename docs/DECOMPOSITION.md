@@ -23,11 +23,11 @@ The AI Chat DESIGN is decomposed into six features organized around core chat ca
 
 **Overall implementation status:**
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-status-overall`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-status-overall`
 
 ### 2.1 [Database Foundation](features/database-foundation/) ⏳ HIGH
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-feature-database-foundation`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-feature-database-foundation`
 
 - **Purpose**: Establish the foundational database schema and infrastructure required by all other features. This includes PostgreSQL setup, Redis configuration, and core table definitions.
 
@@ -49,11 +49,11 @@ The AI Chat DESIGN is decomposed into six features organized around core chat ca
 
 - **Requirements Covered**:
 
-  - [ ] `p1` - `cpt-ai-chat-via-cyber-pilot-fr-persist-history`
+  - [x] `p1` - `cpt-ai-chat-via-cyber-pilot-fr-persist-history`
 
 - **Design Principles Covered**:
 
-  - [ ] `p1` - `cpt-ai-chat-via-cyber-pilot-principle-stateless-api`
+  - [x] `p1` - `cpt-ai-chat-via-cyber-pilot-principle-stateless-api`
 
 - **Design Constraints Covered**:
 
@@ -77,13 +77,13 @@ The AI Chat DESIGN is decomposed into six features organized around core chat ca
 
 - **Data**:
 
-  - [ ] `p1` - `cpt-ai-chat-via-cyber-pilot-dbtable-users`
-  - [ ] `p1` - `cpt-ai-chat-via-cyber-pilot-dbtable-conversations`
-  - [ ] `p1` - `cpt-ai-chat-via-cyber-pilot-dbtable-messages`
+  - [x] `p1` - `cpt-ai-chat-via-cyber-pilot-dbtable-users`
+  - [x] `p1` - `cpt-ai-chat-via-cyber-pilot-dbtable-conversations`
+  - [x] `p1` - `cpt-ai-chat-via-cyber-pilot-dbtable-messages`
 
 ### 2.2 [User Authentication](features/user-auth/) ⏳ HIGH
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-feature-user-auth`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-feature-user-auth`
 
 - **Purpose**: Enable user registration, login, and session management. Supports email/password and OAuth (Google) authentication flows with JWT-based sessions.
 
@@ -106,11 +106,11 @@ The AI Chat DESIGN is decomposed into six features organized around core chat ca
 
 - **Requirements Covered**:
 
-  - [ ] `p1` - `cpt-ai-chat-via-cyber-pilot-fr-auth`
+  - [x] `p1` - `cpt-ai-chat-via-cyber-pilot-fr-auth`
 
 - **Design Principles Covered**:
 
-  - [ ] `p1` - `cpt-ai-chat-via-cyber-pilot-principle-stateless-api`
+  - [x] `p1` - `cpt-ai-chat-via-cyber-pilot-principle-stateless-api`
 
 - **Design Constraints Covered**:
 
@@ -121,8 +121,8 @@ The AI Chat DESIGN is decomposed into six features organized around core chat ca
 
 - **Design Components**:
 
-  - [ ] `p1` - `cpt-ai-chat-via-cyber-pilot-component-auth-service`
-  - [ ] `p1` - `cpt-ai-chat-via-cyber-pilot-component-api-gateway` (auth middleware)
+  - [x] `p1` - `cpt-ai-chat-via-cyber-pilot-component-auth-service`
+  - [x] `p1` - `cpt-ai-chat-via-cyber-pilot-component-api-gateway` (auth middleware)
 
 - **API**:
   - POST /api/v1/auth/register
@@ -133,15 +133,15 @@ The AI Chat DESIGN is decomposed into six features organized around core chat ca
 
 - **Sequences**:
 
-  - [ ] `p1` - `cpt-ai-chat-via-cyber-pilot-seq-auth-login`
+  - [x] `p1` - `cpt-ai-chat-via-cyber-pilot-seq-auth-login`
 
 - **Data**:
 
-  - [ ] `p1` - `cpt-ai-chat-via-cyber-pilot-dbtable-users`
+  - [x] `p1` - `cpt-ai-chat-via-cyber-pilot-dbtable-users`
 
 ### 2.3 [Conversation Management](features/conversation-mgmt/) ⏳ HIGH
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-feature-conversation-mgmt`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-feature-conversation-mgmt`
 
 - **Purpose**: Enable users to create, list, rename, delete, and search conversations. Provides the organizational layer for chat history.
 
@@ -163,15 +163,15 @@ The AI Chat DESIGN is decomposed into six features organized around core chat ca
 
 - **Requirements Covered**:
 
-  - [ ] `p1` - `cpt-ai-chat-via-cyber-pilot-fr-new-chat`
-  - [ ] `p1` - `cpt-ai-chat-via-cyber-pilot-fr-persist-history`
-  - [ ] `p1` - `cpt-ai-chat-via-cyber-pilot-fr-sidebar-list`
-  - [ ] `p1` - `cpt-ai-chat-via-cyber-pilot-fr-rename-delete`
-  - [ ] `p2` - `cpt-ai-chat-via-cyber-pilot-fr-search`
+  - [x] `p1` - `cpt-ai-chat-via-cyber-pilot-fr-new-chat`
+  - [x] `p1` - `cpt-ai-chat-via-cyber-pilot-fr-persist-history`
+  - [x] `p1` - `cpt-ai-chat-via-cyber-pilot-fr-sidebar-list`
+  - [x] `p1` - `cpt-ai-chat-via-cyber-pilot-fr-rename-delete`
+  - [x] `p2` - `cpt-ai-chat-via-cyber-pilot-fr-search`
 
 - **Design Principles Covered**:
 
-  - [ ] `p1` - `cpt-ai-chat-via-cyber-pilot-principle-stateless-api`
+  - [x] `p1` - `cpt-ai-chat-via-cyber-pilot-principle-stateless-api`
 
 - **Design Constraints Covered**:
 
@@ -183,9 +183,9 @@ The AI Chat DESIGN is decomposed into six features organized around core chat ca
 
 - **Design Components**:
 
-  - [ ] `p1` - `cpt-ai-chat-via-cyber-pilot-component-chat-service` (conversation operations)
-  - [ ] `p1` - `cpt-ai-chat-via-cyber-pilot-component-api-gateway` (conversation endpoints)
-  - [ ] `p1` - `cpt-ai-chat-via-cyber-pilot-component-chat-ui` (sidebar, conversation list)
+  - [x] `p1` - `cpt-ai-chat-via-cyber-pilot-component-chat-service` (conversation operations)
+  - [x] `p1` - `cpt-ai-chat-via-cyber-pilot-component-api-gateway` (conversation endpoints)
+  - [x] `p1` - `cpt-ai-chat-via-cyber-pilot-component-chat-ui` (sidebar, conversation list)
 
 - **API**:
   - GET /api/v1/conversations
@@ -201,12 +201,12 @@ The AI Chat DESIGN is decomposed into six features organized around core chat ca
 
 - **Data**:
 
-  - [ ] `p1` - `cpt-ai-chat-via-cyber-pilot-dbtable-conversations`
-  - [ ] `p1` - `cpt-ai-chat-via-cyber-pilot-dbtable-messages`
+  - [x] `p1` - `cpt-ai-chat-via-cyber-pilot-dbtable-conversations`
+  - [x] `p1` - `cpt-ai-chat-via-cyber-pilot-dbtable-messages`
 
 ### 2.4 [Chat Core](features/chat-core/) ⏳ HIGH
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-feature-chat-core`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-feature-chat-core`
 
 - **Purpose**: Enable the core chat experience: sending messages, receiving streaming responses, stop/regenerate controls, and message formatting. This is the primary product functionality.
 
@@ -232,28 +232,28 @@ The AI Chat DESIGN is decomposed into six features organized around core chat ca
 
 - **Requirements Covered**:
 
-  - [ ] `p1` - `cpt-ai-chat-via-cyber-pilot-fr-send-message`
-  - [ ] `p1` - `cpt-ai-chat-via-cyber-pilot-fr-streaming`
-  - [ ] `p1` - `cpt-ai-chat-via-cyber-pilot-fr-stop-regen`
-  - [ ] `p1` - `cpt-ai-chat-via-cyber-pilot-fr-formatting`
-  - [ ] `p1` - `cpt-ai-chat-via-cyber-pilot-fr-llm-routing`
-  - [ ] `p1` - `cpt-ai-chat-via-cyber-pilot-fr-context-mgmt`
-  - [ ] `p1` - `cpt-ai-chat-via-cyber-pilot-fr-system-prompt`
-  - [ ] `p1` - `cpt-ai-chat-via-cyber-pilot-fr-rate-limiting`
-  - [ ] `p1` - `cpt-ai-chat-via-cyber-pilot-nfr-performance`
-  - [ ] `p1` - `cpt-ai-chat-via-cyber-pilot-nfr-availability`
-  - [ ] `p1` - `cpt-ai-chat-via-cyber-pilot-nfr-security`
+  - [x] `p1` - `cpt-ai-chat-via-cyber-pilot-fr-send-message`
+  - [x] `p1` - `cpt-ai-chat-via-cyber-pilot-fr-streaming`
+  - [x] `p1` - `cpt-ai-chat-via-cyber-pilot-fr-stop-regen`
+  - [x] `p1` - `cpt-ai-chat-via-cyber-pilot-fr-formatting`
+  - [x] `p1` - `cpt-ai-chat-via-cyber-pilot-fr-llm-routing`
+  - [x] `p1` - `cpt-ai-chat-via-cyber-pilot-fr-context-mgmt`
+  - [x] `p1` - `cpt-ai-chat-via-cyber-pilot-fr-system-prompt`
+  - [x] `p1` - `cpt-ai-chat-via-cyber-pilot-fr-rate-limiting`
+  - [x] `p1` - `cpt-ai-chat-via-cyber-pilot-nfr-performance`
+  - [x] `p1` - `cpt-ai-chat-via-cyber-pilot-nfr-availability`
+  - [x] `p1` - `cpt-ai-chat-via-cyber-pilot-nfr-security`
 
 - **Design Principles Covered**:
 
-  - [ ] `p1` - `cpt-ai-chat-via-cyber-pilot-principle-streaming-first`
-  - [ ] `p2` - `cpt-ai-chat-via-cyber-pilot-principle-graceful-degradation`
+  - [x] `p1` - `cpt-ai-chat-via-cyber-pilot-principle-streaming-first`
+  - [x] `p2` - `cpt-ai-chat-via-cyber-pilot-principle-graceful-degradation`
 
 - **Design Constraints Covered**:
 
-  - [ ] `p1` - `cpt-ai-chat-via-cyber-pilot-constraint-llm-dependency`
-  - [ ] `p1` - `cpt-ai-chat-via-cyber-pilot-constraint-context-window`
-  - [ ] `p2` - `cpt-ai-chat-via-cyber-pilot-constraint-rate-limits`
+  - [x] `p1` - `cpt-ai-chat-via-cyber-pilot-constraint-llm-dependency`
+  - [x] `p1` - `cpt-ai-chat-via-cyber-pilot-constraint-context-window`
+  - [x] `p2` - `cpt-ai-chat-via-cyber-pilot-constraint-rate-limits`
 
 - **Domain Model Entities**:
   - Message
@@ -261,11 +261,11 @@ The AI Chat DESIGN is decomposed into six features organized around core chat ca
 
 - **Design Components**:
 
-  - [ ] `p1` - `cpt-ai-chat-via-cyber-pilot-component-chat-ui` (message thread, composer, streaming display)
-  - [ ] `p1` - `cpt-ai-chat-via-cyber-pilot-component-api-gateway` (SSE streaming, rate limiting)
-  - [ ] `p1` - `cpt-ai-chat-via-cyber-pilot-component-chat-service` (message handling, orchestration)
-  - [ ] `p1` - `cpt-ai-chat-via-cyber-pilot-component-context-manager`
-  - [ ] `p1` - `cpt-ai-chat-via-cyber-pilot-component-llm-adapter`
+  - [x] `p1` - `cpt-ai-chat-via-cyber-pilot-component-chat-ui` (message thread, composer, streaming display)
+  - [x] `p1` - `cpt-ai-chat-via-cyber-pilot-component-api-gateway` (SSE streaming, rate limiting)
+  - [x] `p1` - `cpt-ai-chat-via-cyber-pilot-component-chat-service` (message handling, orchestration)
+  - [x] `p1` - `cpt-ai-chat-via-cyber-pilot-component-context-manager`
+  - [x] `p1` - `cpt-ai-chat-via-cyber-pilot-component-llm-adapter`
 
 - **API**:
   - POST /api/v1/conversations/:id/messages (SSE streaming response)
@@ -274,15 +274,15 @@ The AI Chat DESIGN is decomposed into six features organized around core chat ca
 
 - **Sequences**:
 
-  - [ ] `p1` - `cpt-ai-chat-via-cyber-pilot-seq-send-message`
+  - [x] `p1` - `cpt-ai-chat-via-cyber-pilot-seq-send-message`
 
 - **Data**:
 
-  - [ ] `p1` - `cpt-ai-chat-via-cyber-pilot-dbtable-messages`
+  - [x] `p1` - `cpt-ai-chat-via-cyber-pilot-dbtable-messages`
 
 ### 2.5 [Content Moderation](features/content-moderation/) ⏳ MEDIUM
 
-- [ ] `p2` - **ID**: `cpt-ai-chat-via-cyber-pilot-feature-content-moderation`
+- [x] `p2` - **ID**: `cpt-ai-chat-via-cyber-pilot-feature-content-moderation`
 
 - **Purpose**: Filter user inputs and assistant outputs for safety policy compliance. Block or flag disallowed content and provide user reporting mechanism.
 
@@ -303,12 +303,12 @@ The AI Chat DESIGN is decomposed into six features organized around core chat ca
 
 - **Requirements Covered**:
 
-  - [ ] `p1` - `cpt-ai-chat-via-cyber-pilot-fr-moderation`
-  - [ ] `p2` - `cpt-ai-chat-via-cyber-pilot-fr-reporting`
+  - [x] `p1` - `cpt-ai-chat-via-cyber-pilot-fr-moderation`
+  - [x] `p2` - `cpt-ai-chat-via-cyber-pilot-fr-reporting`
 
 - **Design Principles Covered**:
 
-  - [ ] `p2` - `cpt-ai-chat-via-cyber-pilot-principle-graceful-degradation`
+  - [x] `p2` - `cpt-ai-chat-via-cyber-pilot-principle-graceful-degradation`
 
 - **Design Constraints Covered**:
 
@@ -319,8 +319,8 @@ The AI Chat DESIGN is decomposed into six features organized around core chat ca
 
 - **Design Components**:
 
-  - [ ] `p2` - `cpt-ai-chat-via-cyber-pilot-component-moderation-service`
-  - [ ] `p1` - `cpt-ai-chat-via-cyber-pilot-component-chat-ui` (report button)
+  - [x] `p2` - `cpt-ai-chat-via-cyber-pilot-component-moderation-service`
+  - [x] `p1` - `cpt-ai-chat-via-cyber-pilot-component-chat-ui` (report button)
 
 - **API**:
   - POST /api/v1/messages/:id/report
@@ -331,11 +331,11 @@ The AI Chat DESIGN is decomposed into six features organized around core chat ca
 
 - **Data**:
 
-  - [ ] `p1` - `cpt-ai-chat-via-cyber-pilot-dbtable-messages` (safety_flags in metadata)
+  - [x] `p1` - `cpt-ai-chat-via-cyber-pilot-dbtable-messages` (safety_flags in metadata)
 
 ### 2.6 [Admin Dashboard](features/admin-dashboard/) ⏳ MEDIUM
 
-- [ ] `p2` - **ID**: `cpt-ai-chat-via-cyber-pilot-feature-admin-dashboard`
+- [x] `p2` - **ID**: `cpt-ai-chat-via-cyber-pilot-feature-admin-dashboard`
 
 - **Purpose**: Provide admin visibility into system health, usage metrics, costs, and user reports. Enable incident response controls.
 
@@ -356,10 +356,10 @@ The AI Chat DESIGN is decomposed into six features organized around core chat ca
 
 - **Requirements Covered**:
 
-  - [ ] `p1` - `cpt-ai-chat-via-cyber-pilot-fr-dashboard`
-  - [ ] `p2` - `cpt-ai-chat-via-cyber-pilot-fr-logs`
-  - [ ] `p2` - `cpt-ai-chat-via-cyber-pilot-fr-incident-controls`
-  - [ ] `p2` - `cpt-ai-chat-via-cyber-pilot-nfr-scalability`
+  - [x] `p1` - `cpt-ai-chat-via-cyber-pilot-fr-dashboard`
+  - [x] `p2` - `cpt-ai-chat-via-cyber-pilot-fr-logs`
+  - [x] `p2` - `cpt-ai-chat-via-cyber-pilot-fr-incident-controls`
+  - [x] `p2` - `cpt-ai-chat-via-cyber-pilot-nfr-scalability`
 
 - **Design Principles Covered**:
 
@@ -375,7 +375,7 @@ The AI Chat DESIGN is decomposed into six features organized around core chat ca
 
 - **Design Components**:
 
-  - [ ] `p1` - `cpt-ai-chat-via-cyber-pilot-component-api-gateway` (metrics collection)
+  - [x] `p1` - `cpt-ai-chat-via-cyber-pilot-component-api-gateway` (metrics collection)
 
 - **API**:
   - GET /api/v1/admin/metrics

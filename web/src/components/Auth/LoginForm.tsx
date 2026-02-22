@@ -1,12 +1,14 @@
 import { useState } from 'react';
+import { GoogleSignInButton } from './GoogleSignInButton';
 
 interface LoginFormProps {
   onLogin: (email: string, password: string) => Promise<unknown>;
+  onGoogleLogin?: (credential: string) => Promise<unknown>;
   onSwitchToRegister: () => void;
   error?: string | null;
 }
 
-export function LoginForm({ onLogin, onSwitchToRegister, error }: LoginFormProps) {
+export function LoginForm({ onLogin, onGoogleLogin, onSwitchToRegister, error }: LoginFormProps) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -83,6 +85,34 @@ export function LoginForm({ onLogin, onSwitchToRegister, error }: LoginFormProps
           >
             {isLoading ? 'Signing in...' : 'Sign in'}
           </button>
+
+          {onGoogleLogin && (
+            <>
+              <div className="relative">
+                <div className="absolute inset-0 flex items-center">
+                  <div className="w-full border-t border-gray-300 dark:border-gray-600" />
+                </div>
+                <div className="relative flex justify-center text-sm">
+                  <span className="px-2 bg-gray-50 dark:bg-gray-900 text-gray-500">Or continue with</span>
+                </div>
+              </div>
+
+              <GoogleSignInButton
+                onSuccess={async (credential) => {
+                  setLocalError(null);
+                  setIsLoading(true);
+                  try {
+                    await onGoogleLogin(credential);
+                  } catch (err) {
+                    setLocalError((err as Error).message);
+                  } finally {
+                    setIsLoading(false);
+                  }
+                }}
+                onError={(err) => setLocalError(err)}
+              />
+            </>
+          )}
 
           <p className="text-center text-sm text-gray-600 dark:text-gray-400">
             Don't have an account?{' '}

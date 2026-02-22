@@ -44,6 +44,15 @@ export async function logout() {
   return handleResponse<{ message: string }>(response);
 }
 
+export async function loginWithGoogle(credential: string) {
+  const response = await fetch(`${API_BASE}/auth/oauth/google`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ token: credential }),
+  });
+  return handleResponse<{ token: string; user: User }>(response);
+}
+
 export async function getCurrentUser() {
   const response = await fetch(`${API_BASE}/auth/me`, {
     headers: { ...getAuthHeaders() },

@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import type { User } from '../lib/api';
-import { login as apiLogin, register as apiRegister, logout as apiLogout, getCurrentUser } from '../lib/api';
+import { login as apiLogin, register as apiRegister, logout as apiLogout, getCurrentUser, loginWithGoogle as apiLoginWithGoogle } from '../lib/api';
 
 interface AuthState {
   user: User | null;
@@ -59,11 +59,19 @@ export function useAuth() {
     setState({ user: null, isLoading: false, isAuthenticated: false });
   };
 
+  const loginWithGoogle = async (credential: string) => {
+    const result = await apiLoginWithGoogle(credential);
+    localStorage.setItem('token', result.token);
+    setState({ user: result.user, isLoading: false, isAuthenticated: true });
+    return result.user;
+  };
+
   return {
     ...state,
     login,
     register,
     logout,
+    loginWithGoogle,
     checkAuth,
   };
 }
