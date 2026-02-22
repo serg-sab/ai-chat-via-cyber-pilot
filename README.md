@@ -1,5 +1,8 @@
 # AI Chat Application
 
+> **📘 This project is an example of Specification-Driven Development (SDD) using [Cypilot](https://github.com/cyberfabric/cyber-pilot/).**  
+> See [docs/GUIDE.md](docs/GUIDE.md) for a step-by-step guide on how this application was built using Cypilot's design-to-code traceability methodology.
+
 A full-stack AI chat application with real-time streaming responses, conversation history, user authentication, content moderation, and admin dashboard.
 
 ## Screenshots
