@@ -50,6 +50,7 @@ export interface JwtPayload {
   sub: string;      // user_id
   email: string;
   sid: string;      // session_id
+  role?: string;    // user role (admin, user)
   iat: number;
   exp: number;
 }

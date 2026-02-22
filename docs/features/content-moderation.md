@@ -37,7 +37,7 @@ This feature provides content safety guardrails that protect users and ensure pl
 
 ### Moderate Input Flow
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-flow-content-moderation-input`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-flow-content-moderation-input`
 
 **Actor**: `cpt-ai-chat-via-cyber-pilot-actor-user`
 
@@ -51,16 +51,16 @@ This feature provides content safety guardrails that protect users and ensure pl
 - Moderation service unavailable — proceed with warning (graceful degradation)
 
 **Steps**:
-1. [ ] - `p1` - Receive user message content before LLM call - `inst-receive-input`
-2. [ ] - `p1` - Algorithm: check content safety using `cpt-ai-chat-via-cyber-pilot-algo-content-moderation-check-safety` - `inst-check-input-safety`
-3. [ ] - `p1` - **IF** content blocked **THEN** return 400 with violation reason - `inst-block-input`
-4. [ ] - `p1` - **IF** content flagged **THEN** record safety_flags in message metadata - `inst-flag-input`
-5. [ ] - `p1` - Algorithm: log moderation event using `cpt-ai-chat-via-cyber-pilot-algo-content-moderation-log-event` - `inst-log-input-event`
-6. [ ] - `p1` - **RETURN** moderation result (pass/flag/block) - `inst-return-input-result`
+1. [x] - `p1` - Receive user message content before LLM call - `inst-receive-input`
+2. [x] - `p1` - Algorithm: check content safety using `cpt-ai-chat-via-cyber-pilot-algo-content-moderation-check-safety` - `inst-check-input-safety`
+3. [x] - `p1` - **IF** content blocked **THEN** return 400 with violation reason - `inst-block-input`
+4. [x] - `p1` - **IF** content flagged **THEN** record safety_flags in message metadata - `inst-flag-input`
+5. [x] - `p1` - Algorithm: log moderation event using `cpt-ai-chat-via-cyber-pilot-algo-content-moderation-log-event` - `inst-log-input-event`
+6. [x] - `p1` - **RETURN** moderation result (pass/flag/block) - `inst-return-input-result`
 
 ### Moderate Output Flow
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-flow-content-moderation-output`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-flow-content-moderation-output`
 
 **Actor**: `cpt-ai-chat-via-cyber-pilot-actor-llm`
 
@@ -74,16 +74,16 @@ This feature provides content safety guardrails that protect users and ensure pl
 - Moderation service unavailable — proceed with warning
 
 **Steps**:
-1. [ ] - `p1` - Receive assistant response content after LLM completion - `inst-receive-output`
-2. [ ] - `p1` - Algorithm: check content safety using `cpt-ai-chat-via-cyber-pilot-algo-content-moderation-check-safety` - `inst-check-output-safety`
-3. [ ] - `p1` - **IF** content blocked **THEN** replace with fallback message - `inst-replace-blocked-output`
-4. [ ] - `p1` - **IF** content flagged **THEN** record safety_flags in message metadata - `inst-flag-output`
-5. [ ] - `p1` - Algorithm: log moderation event using `cpt-ai-chat-via-cyber-pilot-algo-content-moderation-log-event` - `inst-log-output-event`
-6. [ ] - `p1` - **RETURN** moderated content - `inst-return-output-result`
+1. [x] - `p1` - Receive assistant response content after LLM completion - `inst-receive-output`
+2. [x] - `p1` - Algorithm: check content safety using `cpt-ai-chat-via-cyber-pilot-algo-content-moderation-check-safety` - `inst-check-output-safety`
+3. [x] - `p1` - **IF** content blocked **THEN** replace with fallback message - `inst-replace-blocked-output`
+4. [x] - `p1` - **IF** content flagged **THEN** record safety_flags in message metadata - `inst-flag-output`
+5. [x] - `p1` - Algorithm: log moderation event using `cpt-ai-chat-via-cyber-pilot-algo-content-moderation-log-event` - `inst-log-output-event`
+6. [x] - `p1` - **RETURN** moderated content - `inst-return-output-result`
 
 ### Report Message Flow
 
-- [ ] `p2` - **ID**: `cpt-ai-chat-via-cyber-pilot-flow-content-moderation-report`
+- [x] `p2` - **ID**: `cpt-ai-chat-via-cyber-pilot-flow-content-moderation-report`
 
 **Actor**: `cpt-ai-chat-via-cyber-pilot-actor-user`
 
@@ -97,20 +97,20 @@ This feature provides content safety guardrails that protect users and ensure pl
 - Already reported — return 409
 
 **Steps**:
-1. [ ] - `p2` - User clicks report button or POST /api/v1/messages/:id/report - `inst-submit-report`
-2. [ ] - `p2` - Validate user is authenticated - `inst-validate-auth-report`
-3. [ ] - `p2` - DB: SELECT FROM messages WHERE id = :id - `inst-fetch-message`
-4. [ ] - `p2` - **IF** message not found **THEN** return 404 - `inst-message-not-found`
-5. [ ] - `p2` - Validate user owns the conversation - `inst-validate-ownership`
-6. [ ] - `p2` - DB: SELECT FROM reports WHERE message_id = :id AND user_id = :user_id - `inst-check-existing-report`
-7. [ ] - `p2` - **IF** already reported **THEN** return 409 Conflict - `inst-already-reported`
-8. [ ] - `p2` - DB: INSERT INTO reports (message_id, user_id, reason, status, created_at) - `inst-create-report`
-9. [ ] - `p2` - Algorithm: log moderation event using `cpt-ai-chat-via-cyber-pilot-algo-content-moderation-log-event` - `inst-log-report-event`
-10. [ ] - `p2` - **RETURN** 201 Created with report ID - `inst-return-report-created`
+1. [x] - `p2` - User clicks report button or POST /api/v1/messages/:id/report - `inst-submit-report`
+2. [x] - `p2` - Validate user is authenticated - `inst-validate-auth-report`
+3. [x] - `p2` - DB: SELECT FROM messages WHERE id = :id - `inst-fetch-message`
+4. [x] - `p2` - **IF** message not found **THEN** return 404 - `inst-message-not-found`
+5. [x] - `p2` - Validate user owns the conversation - `inst-validate-ownership`
+6. [x] - `p2` - DB: SELECT FROM reports WHERE message_id = :id AND user_id = :user_id - `inst-check-existing-report`
+7. [x] - `p2` - **IF** already reported **THEN** return 409 Conflict - `inst-already-reported`
+8. [x] - `p2` - DB: INSERT INTO reports (message_id, user_id, reason, status, created_at) - `inst-create-report`
+9. [x] - `p2` - Algorithm: log moderation event using `cpt-ai-chat-via-cyber-pilot-algo-content-moderation-log-event` - `inst-log-report-event`
+10. [x] - `p2` - **RETURN** 201 Created with report ID - `inst-return-report-created`
 
 ### Review Reports Flow
 
-- [ ] `p2` - **ID**: `cpt-ai-chat-via-cyber-pilot-flow-content-moderation-review`
+- [x] `p2` - **ID**: `cpt-ai-chat-via-cyber-pilot-flow-content-moderation-review`
 
 **Actor**: `cpt-ai-chat-via-cyber-pilot-actor-admin`
 
@@ -123,55 +123,55 @@ This feature provides content safety guardrails that protect users and ensure pl
 - Not admin — return 403
 
 **Steps**:
-1. [ ] - `p2` - Admin requests GET /api/v1/admin/reports - `inst-request-reports`
-2. [ ] - `p2` - Validate admin role - `inst-validate-admin`
-3. [ ] - `p2` - DB: SELECT FROM reports WHERE status = 'pending' ORDER BY created_at ASC - `inst-fetch-pending-reports`
-4. [ ] - `p2` - **RETURN** paginated reports list - `inst-return-reports`
-5. [ ] - `p2` - Admin submits PATCH /api/v1/admin/reports/:id with resolution - `inst-submit-resolution`
-6. [ ] - `p2` - DB: UPDATE reports SET status = :status, resolved_by = :admin_id, resolved_at = NOW() - `inst-update-report`
-7. [ ] - `p2` - Algorithm: log moderation event using `cpt-ai-chat-via-cyber-pilot-algo-content-moderation-log-event` - `inst-log-resolution`
-8. [ ] - `p2` - **RETURN** updated report - `inst-return-resolved`
+1. [x] - `p2` - Admin requests GET /api/v1/admin/reports - `inst-request-reports`
+2. [x] - `p2` - Validate admin role - `inst-validate-admin`
+3. [x] - `p2` - DB: SELECT FROM reports WHERE status = 'pending' ORDER BY created_at ASC - `inst-fetch-pending-reports`
+4. [x] - `p2` - **RETURN** paginated reports list - `inst-return-reports`
+5. [x] - `p2` - Admin submits PATCH /api/v1/admin/reports/:id with resolution - `inst-submit-resolution`
+6. [x] - `p2` - DB: UPDATE reports SET status = :status, resolved_by = :admin_id, resolved_at = NOW() - `inst-update-report`
+7. [x] - `p2` - Algorithm: log moderation event using `cpt-ai-chat-via-cyber-pilot-algo-content-moderation-log-event` - `inst-log-resolution`
+8. [x] - `p2` - **RETURN** updated report - `inst-return-resolved`
 
 ## 3. Processes / Business Logic (CDSL)
 
 ### Check Content Safety
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-algo-content-moderation-check-safety`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-algo-content-moderation-check-safety`
 
 **Input**: Text content, content type (input/output)
 
 **Output**: { result: 'pass' | 'flag' | 'block', categories: string[], scores: object }
 
 **Steps**:
-1. [ ] - `p1` - **IF** moderation disabled via config **THEN** return pass - `inst-check-enabled`
-2. [ ] - `p1` - **TRY** call OpenAI moderation API - `inst-try-openai-moderation`
-3. [ ] - `p1` - **CATCH** error - `inst-catch-moderation-error`
-    1. [ ] - `p1` - Log error and return pass (graceful degradation) - `inst-graceful-fallback`
-4. [ ] - `p1` - Extract flagged categories from response - `inst-extract-categories`
-5. [ ] - `p1` - **IF** any category score > block_threshold **THEN** result = 'block' - `inst-check-block-threshold`
-6. [ ] - `p1` - **ELSE IF** any category score > flag_threshold **THEN** result = 'flag' - `inst-check-flag-threshold`
-7. [ ] - `p1` - **ELSE** result = 'pass' - `inst-result-pass`
-8. [ ] - `p1` - **RETURN** { result, categories, scores } - `inst-return-safety-result`
+1. [x] - `p1` - **IF** moderation disabled via config **THEN** return pass - `inst-check-enabled`
+2. [x] - `p1` - **TRY** call OpenAI moderation API - `inst-try-openai-moderation`
+3. [x] - `p1` - **CATCH** error - `inst-catch-moderation-error`
+    1. [x] - `p1` - Log error and return pass (graceful degradation) - `inst-graceful-fallback`
+4. [x] - `p1` - Extract flagged categories from response - `inst-extract-categories`
+5. [x] - `p1` - **IF** any category score > block_threshold **THEN** result = 'block' - `inst-check-block-threshold`
+6. [x] - `p1` - **ELSE IF** any category score > flag_threshold **THEN** result = 'flag' - `inst-check-flag-threshold`
+7. [x] - `p1` - **ELSE** result = 'pass' - `inst-result-pass`
+8. [x] - `p1` - **RETURN** { result, categories, scores } - `inst-return-safety-result`
 
 ### Log Moderation Event
 
-- [ ] `p2` - **ID**: `cpt-ai-chat-via-cyber-pilot-algo-content-moderation-log-event`
+- [x] `p2` - **ID**: `cpt-ai-chat-via-cyber-pilot-algo-content-moderation-log-event`
 
 **Input**: Event type, message ID, user ID, moderation result, metadata
 
 **Output**: Log entry created
 
 **Steps**:
-1. [ ] - `p2` - Build log entry with timestamp, event type, IDs - `inst-build-log-entry`
-2. [ ] - `p2` - Include moderation result and categories - `inst-include-result`
-3. [ ] - `p2` - DB: INSERT INTO moderation_logs (event_type, message_id, user_id, result, metadata, created_at) - `inst-insert-log`
-4. [ ] - `p2` - **RETURN** log entry ID - `inst-return-log-id`
+1. [x] - `p2` - Build log entry with timestamp, event type, IDs - `inst-build-log-entry`
+2. [x] - `p2` - Include moderation result and categories - `inst-include-result`
+3. [x] - `p2` - DB: INSERT INTO moderation_logs (event_type, message_id, user_id, result, metadata, created_at) - `inst-insert-log`
+4. [x] - `p2` - **RETURN** log entry ID - `inst-return-log-id`
 
 ## 4. States (CDSL)
 
 ### Report Lifecycle State
 
-- [ ] `p2` - **ID**: `cpt-ai-chat-via-cyber-pilot-state-report-lifecycle`
+- [x] `p2` - **ID**: `cpt-ai-chat-via-cyber-pilot-state-report-lifecycle`
 
 ```
 [Pending] --review--> [Under Review] --dismiss--> [Dismissed]
@@ -195,7 +195,7 @@ This feature provides content safety guardrails that protect users and ensure pl
 
 ### Input Moderation Middleware
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-dod-content-moderation-input-middleware`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-dod-content-moderation-input-middleware`
 
 The system **MUST** check user message content against moderation API before sending to LLM, blocking violating content with clear error message.
 
@@ -214,7 +214,7 @@ The system **MUST** check user message content against moderation API before sen
 
 ### Output Moderation Filter
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-dod-content-moderation-output-filter`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-dod-content-moderation-output-filter`
 
 The system **MUST** check assistant response content against moderation API before displaying, replacing violating content with safe fallback.
 
@@ -234,7 +234,7 @@ The system **MUST** check assistant response content against moderation API befo
 
 ### Report Message Endpoint
 
-- [ ] `p2` - **ID**: `cpt-ai-chat-via-cyber-pilot-dod-content-moderation-report-endpoint`
+- [x] `p2` - **ID**: `cpt-ai-chat-via-cyber-pilot-dod-content-moderation-report-endpoint`
 
 The system **MUST** expose POST /api/v1/messages/:id/report that allows users to report problematic assistant messages for admin review.
 
@@ -253,7 +253,7 @@ The system **MUST** expose POST /api/v1/messages/:id/report that allows users to
 
 ### Moderation Logging
 
-- [ ] `p2` - **ID**: `cpt-ai-chat-via-cyber-pilot-dod-content-moderation-logging`
+- [x] `p2` - **ID**: `cpt-ai-chat-via-cyber-pilot-dod-content-moderation-logging`
 
 The system **MUST** log all moderation events (checks, blocks, flags, reports) for audit and review purposes.
 
@@ -271,7 +271,7 @@ The system **MUST** log all moderation events (checks, blocks, flags, reports) f
 
 ### Safety Flags in Metadata
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-dod-content-moderation-safety-flags`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-dod-content-moderation-safety-flags`
 
 The system **MUST** store moderation results (safety_flags) in message metadata for flagged content.
 
