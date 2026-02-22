@@ -36,6 +36,10 @@
         {
           "path": "docs/features/conversation-mgmt.md",
           "kind": "FEATURE"
+        },
+        {
+          "path": "docs/features/chat-core.md",
+          "kind": "FEATURE"
         }
       ],
       "codebase": [],
