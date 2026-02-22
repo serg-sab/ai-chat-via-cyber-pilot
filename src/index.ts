@@ -5,6 +5,7 @@ import { initPool } from './db/pool';
 import { initRedis } from './db/redis';
 import { authRoutes } from './auth';
 import { conversationRoutes } from './conversations';
+import { chatRoutes } from './chat';
 
 const PORT = process.env.PORT || 3000;
 
@@ -26,6 +27,7 @@ async function main() {
   // Routes
   app.use('/api/v1/auth', authRoutes);
   app.use('/api/v1/conversations', conversationRoutes);
+  app.use('/api/v1/conversations', chatRoutes);
   
   // Start server
   app.listen(PORT, () => {
