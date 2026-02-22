@@ -532,7 +532,7 @@ data: {"messageId": "uuid", "tokenCount": 15}
 
 #### Send Message Flow
 
-**ID**: `cpt-ai-chat-via-cyber-pilot-seq-send-message`
+- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-seq-send-message`
 
 **Use cases**: `cpt-ai-chat-via-cyber-pilot-usecase-new-chat`, `cpt-ai-chat-via-cyber-pilot-usecase-continue`
 
@@ -585,7 +585,7 @@ sequenceDiagram
 
 #### Authentication Flow
 
-**ID**: `cpt-ai-chat-via-cyber-pilot-seq-auth-login`
+- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-seq-auth-login`
 
 **Use cases**: `cpt-ai-chat-via-cyber-pilot-usecase-new-chat`
 
@@ -619,7 +619,7 @@ sequenceDiagram
 
 #### Table: users
 
-**ID**: `cpt-ai-chat-via-cyber-pilot-dbtable-users`
+- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-dbtable-users`
 
 | Column | Type | Description |
 |--------|------|-------------|
@@ -641,7 +641,7 @@ sequenceDiagram
 
 #### Table: conversations
 
-**ID**: `cpt-ai-chat-via-cyber-pilot-dbtable-conversations`
+- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-dbtable-conversations`
 
 | Column | Type | Description |
 |--------|------|-------------|
@@ -661,7 +661,7 @@ sequenceDiagram
 
 #### Table: messages
 
-**ID**: `cpt-ai-chat-via-cyber-pilot-dbtable-messages`
+- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-dbtable-messages`
 
 | Column | Type | Description |
 |--------|------|-------------|

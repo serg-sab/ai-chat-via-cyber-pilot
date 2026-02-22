@@ -20,6 +20,10 @@
         {
           "path": "docs/DESIGN.md",
           "kind": "DESIGN"
+        },
+        {
+          "path": "docs/DECOMPOSITION.md",
+          "kind": "DECOMPOSITION"
         }
       ],
       "codebase": [],
