@@ -28,6 +28,10 @@
         {
           "path": "docs/features/database-foundation.md",
           "kind": "FEATURE"
+        },
+        {
+          "path": "docs/features/user-auth.md",
+          "kind": "FEATURE"
         }
       ],
       "codebase": [],
