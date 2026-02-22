@@ -78,18 +78,22 @@ export function useChat() {
   }, []);
 
   const removeConversation = useCallback(async (id: string) => {
+    // Optimistic update - remove from UI immediately
+    setState((s) => ({
+      ...s,
+      conversations: s.conversations.filter((c) => c.id !== id),
+      currentConversation: s.currentConversation?.id === id ? null : s.currentConversation,
+      messages: s.currentConversation?.id === id ? [] : s.messages,
+    }));
+    
     try {
       await deleteConversation(id);
-      setState((s) => ({
-        ...s,
-        conversations: s.conversations.filter((c) => c.id !== id),
-        currentConversation: s.currentConversation?.id === id ? null : s.currentConversation,
-        messages: s.currentConversation?.id === id ? [] : s.messages,
-      }));
     } catch (err) {
+      // Reload conversations on error to restore state
+      loadConversations();
       setState((s) => ({ ...s, error: (err as Error).message }));
     }
-  }, []);
+  }, [loadConversations]);
 
   const updateConversationTitle = useCallback(async (id: string, title: string) => {
     try {
