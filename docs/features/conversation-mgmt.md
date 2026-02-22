@@ -36,7 +36,7 @@ This feature provides the conversation management layer that organizes chat hist
 
 ### Create Conversation Flow
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-flow-conversation-mgmt-create`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-flow-conversation-mgmt-create`
 
 **Actor**: `cpt-ai-chat-via-cyber-pilot-actor-user`
 
@@ -50,14 +50,14 @@ This feature provides the conversation management layer that organizes chat hist
 - Server error — return 500
 
 **Steps**:
-1. [ ] - `p1` - User clicks "New Chat" or POST /api/v1/conversations - `inst-submit-create`
-2. [ ] - `p1` - Validate user is authenticated - `inst-validate-auth`
-3. [ ] - `p1` - DB: INSERT INTO conversations (user_id, title, created_at, updated_at) - `inst-insert-conversation`
-4. [ ] - `p1` - **RETURN** conversation object with id, title, created_at - `inst-return-conversation`
+1. [x] - `p1` - User clicks "New Chat" or POST /api/v1/conversations - `inst-submit-create`
+2. [x] - `p1` - Validate user is authenticated - `inst-validate-auth`
+3. [x] - `p1` - DB: INSERT INTO conversations (user_id, title, created_at, updated_at) - `inst-insert-conversation`
+4. [x] - `p1` - **RETURN** conversation object with id, title, created_at - `inst-return-conversation`
 
 ### List Conversations Flow
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-flow-conversation-mgmt-list`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-flow-conversation-mgmt-list`
 
 **Actor**: `cpt-ai-chat-via-cyber-pilot-actor-user`
 
@@ -70,16 +70,16 @@ This feature provides the conversation management layer that organizes chat hist
 - Unauthorized — return 401
 
 **Steps**:
-1. [ ] - `p1` - User loads sidebar or GET /api/v1/conversations - `inst-submit-list`
-2. [ ] - `p1` - Validate user is authenticated - `inst-validate-auth-list`
-3. [ ] - `p1` - Parse pagination params (limit, offset) with defaults - `inst-parse-pagination`
-4. [ ] - `p1` - DB: SELECT FROM conversations WHERE user_id = :user_id AND deleted_at IS NULL ORDER BY updated_at DESC LIMIT :limit OFFSET :offset - `inst-select-conversations`
-5. [ ] - `p1` - DB: SELECT COUNT(*) FROM conversations WHERE user_id = :user_id AND deleted_at IS NULL - `inst-count-conversations`
-6. [ ] - `p1` - **RETURN** conversations array with pagination metadata - `inst-return-list`
+1. [x] - `p1` - User loads sidebar or GET /api/v1/conversations - `inst-submit-list`
+2. [x] - `p1` - Validate user is authenticated - `inst-validate-auth-list`
+3. [x] - `p1` - Parse pagination params (limit, offset) with defaults - `inst-parse-pagination`
+4. [x] - `p1` - DB: SELECT FROM conversations WHERE user_id = :user_id AND deleted_at IS NULL ORDER BY updated_at DESC LIMIT :limit OFFSET :offset - `inst-select-conversations`
+5. [x] - `p1` - DB: SELECT COUNT(*) FROM conversations WHERE user_id = :user_id AND deleted_at IS NULL - `inst-count-conversations`
+6. [x] - `p1` - **RETURN** conversations array with pagination metadata - `inst-return-list`
 
 ### Get Conversation Flow
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-flow-conversation-mgmt-get`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-flow-conversation-mgmt-get`
 
 **Actor**: `cpt-ai-chat-via-cyber-pilot-actor-user`
 
@@ -93,17 +93,17 @@ This feature provides the conversation management layer that organizes chat hist
 - Not owner — return 403
 
 **Steps**:
-1. [ ] - `p1` - User clicks conversation or GET /api/v1/conversations/:id - `inst-submit-get`
-2. [ ] - `p1` - Validate user is authenticated - `inst-validate-auth-get`
-3. [ ] - `p1` - DB: SELECT FROM conversations WHERE id = :id AND deleted_at IS NULL - `inst-select-conversation`
-4. [ ] - `p1` - **IF** conversation not found **THEN** return 404 - `inst-not-found`
-5. [ ] - `p1` - **IF** conversation.user_id != current_user.id **THEN** return 403 - `inst-not-owner`
-6. [ ] - `p1` - DB: SELECT FROM messages WHERE conversation_id = :id ORDER BY created_at ASC - `inst-select-messages`
-7. [ ] - `p1` - **RETURN** conversation with messages array - `inst-return-conversation-messages`
+1. [x] - `p1` - User clicks conversation or GET /api/v1/conversations/:id - `inst-submit-get`
+2. [x] - `p1` - Validate user is authenticated - `inst-validate-auth-get`
+3. [x] - `p1` - DB: SELECT FROM conversations WHERE id = :id AND deleted_at IS NULL - `inst-select-conversation`
+4. [x] - `p1` - **IF** conversation not found **THEN** return 404 - `inst-not-found`
+5. [x] - `p1` - **IF** conversation.user_id != current_user.id **THEN** return 403 - `inst-not-owner`
+6. [x] - `p1` - DB: SELECT FROM messages WHERE conversation_id = :id ORDER BY created_at ASC - `inst-select-messages`
+7. [x] - `p1` - **RETURN** conversation with messages array - `inst-return-conversation-messages`
 
 ### Rename Conversation Flow
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-flow-conversation-mgmt-rename`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-flow-conversation-mgmt-rename`
 
 **Actor**: `cpt-ai-chat-via-cyber-pilot-actor-user`
 
@@ -118,18 +118,18 @@ This feature provides the conversation management layer that organizes chat hist
 - Invalid title — return 400
 
 **Steps**:
-1. [ ] - `p1` - User edits title or PATCH /api/v1/conversations/:id with { title } - `inst-submit-rename`
-2. [ ] - `p1` - Validate user is authenticated - `inst-validate-auth-rename`
-3. [ ] - `p1` - Validate title is non-empty string, max 255 chars - `inst-validate-title`
-4. [ ] - `p1` - DB: SELECT FROM conversations WHERE id = :id AND deleted_at IS NULL - `inst-select-for-rename`
-5. [ ] - `p1` - **IF** conversation not found **THEN** return 404 - `inst-not-found-rename`
-6. [ ] - `p1` - **IF** conversation.user_id != current_user.id **THEN** return 403 - `inst-not-owner-rename`
-7. [ ] - `p1` - DB: UPDATE conversations SET title = :title, updated_at = NOW() WHERE id = :id - `inst-update-title`
-8. [ ] - `p1` - **RETURN** updated conversation - `inst-return-renamed`
+1. [x] - `p1` - User edits title or PATCH /api/v1/conversations/:id with { title } - `inst-submit-rename`
+2. [x] - `p1` - Validate user is authenticated - `inst-validate-auth-rename`
+3. [x] - `p1` - Validate title is non-empty string, max 255 chars - `inst-validate-title`
+4. [x] - `p1` - DB: SELECT FROM conversations WHERE id = :id AND deleted_at IS NULL - `inst-select-for-rename`
+5. [x] - `p1` - **IF** conversation not found **THEN** return 404 - `inst-not-found-rename`
+6. [x] - `p1` - **IF** conversation.user_id != current_user.id **THEN** return 403 - `inst-not-owner-rename`
+7. [x] - `p1` - DB: UPDATE conversations SET title = :title, updated_at = NOW() WHERE id = :id - `inst-update-title`
+8. [x] - `p1` - **RETURN** updated conversation - `inst-return-renamed`
 
 ### Delete Conversation Flow
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-flow-conversation-mgmt-delete`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-flow-conversation-mgmt-delete`
 
 **Actor**: `cpt-ai-chat-via-cyber-pilot-actor-user`
 
@@ -143,17 +143,17 @@ This feature provides the conversation management layer that organizes chat hist
 - Not owner — return 403
 
 **Steps**:
-1. [ ] - `p1` - User clicks delete or DELETE /api/v1/conversations/:id - `inst-submit-delete`
-2. [ ] - `p1` - Validate user is authenticated - `inst-validate-auth-delete`
-3. [ ] - `p1` - DB: SELECT FROM conversations WHERE id = :id AND deleted_at IS NULL - `inst-select-for-delete`
-4. [ ] - `p1` - **IF** conversation not found **THEN** return 404 - `inst-not-found-delete`
-5. [ ] - `p1` - **IF** conversation.user_id != current_user.id **THEN** return 403 - `inst-not-owner-delete`
-6. [ ] - `p1` - DB: UPDATE conversations SET deleted_at = NOW() WHERE id = :id - `inst-soft-delete`
-7. [ ] - `p1` - **RETURN** 204 No Content - `inst-return-deleted`
+1. [x] - `p1` - User clicks delete or DELETE /api/v1/conversations/:id - `inst-submit-delete`
+2. [x] - `p1` - Validate user is authenticated - `inst-validate-auth-delete`
+3. [x] - `p1` - DB: SELECT FROM conversations WHERE id = :id AND deleted_at IS NULL - `inst-select-for-delete`
+4. [x] - `p1` - **IF** conversation not found **THEN** return 404 - `inst-not-found-delete`
+5. [x] - `p1` - **IF** conversation.user_id != current_user.id **THEN** return 403 - `inst-not-owner-delete`
+6. [x] - `p1` - DB: UPDATE conversations SET deleted_at = NOW() WHERE id = :id - `inst-soft-delete`
+7. [x] - `p1` - **RETURN** 204 No Content - `inst-return-deleted`
 
 ### Search Conversations Flow
 
-- [ ] `p2` - **ID**: `cpt-ai-chat-via-cyber-pilot-flow-conversation-mgmt-search`
+- [x] `p2` - **ID**: `cpt-ai-chat-via-cyber-pilot-flow-conversation-mgmt-search`
 
 **Actor**: `cpt-ai-chat-via-cyber-pilot-actor-user`
 
@@ -167,17 +167,17 @@ This feature provides the conversation management layer that organizes chat hist
 - Empty query — return 400
 
 **Steps**:
-1. [ ] - `p2` - User enters search query or GET /api/v1/conversations/search?q=:query - `inst-submit-search`
-2. [ ] - `p2` - Validate user is authenticated - `inst-validate-auth-search`
-3. [ ] - `p2` - Validate query is non-empty - `inst-validate-query`
-4. [ ] - `p2` - DB: SELECT DISTINCT c.* FROM conversations c LEFT JOIN messages m ON c.id = m.conversation_id WHERE c.user_id = :user_id AND c.deleted_at IS NULL AND (c.title ILIKE :pattern OR m.content ILIKE :pattern) ORDER BY c.updated_at DESC LIMIT :limit - `inst-search-query`
-5. [ ] - `p2` - **RETURN** matching conversations array - `inst-return-search-results`
+1. [x] - `p2` - User enters search query or GET /api/v1/conversations/search?q=:query - `inst-submit-search`
+2. [x] - `p2` - Validate user is authenticated - `inst-validate-auth-search`
+3. [x] - `p2` - Validate query is non-empty - `inst-validate-query`
+4. [x] - `p2` - DB: SELECT DISTINCT c.* FROM conversations c LEFT JOIN messages m ON c.id = m.conversation_id WHERE c.user_id = :user_id AND c.deleted_at IS NULL AND (c.title ILIKE :pattern OR m.content ILIKE :pattern) ORDER BY c.updated_at DESC LIMIT :limit - `inst-search-query`
+5. [x] - `p2` - **RETURN** matching conversations array - `inst-return-search-results`
 
 ## 3. Processes / Business Logic (CDSL)
 
 ### Auto-Generate Title
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-algo-conversation-mgmt-auto-title`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-algo-conversation-mgmt-auto-title`
 
 **Input**: Conversation ID, first assistant response content
 
@@ -186,34 +186,34 @@ This feature provides the conversation management layer that organizes chat hist
 **Trigger**: Called after first assistant message is saved
 
 **Steps**:
-1. [ ] - `p1` - Check if conversation title is default ("New Chat") - `inst-check-default-title`
-2. [ ] - `p1` - **IF** title is not default **THEN** skip (user already renamed) - `inst-skip-if-renamed`
-3. [ ] - `p1` - Extract first 50 characters of assistant response - `inst-extract-preview`
-4. [ ] - `p1` - Clean and truncate to create title (remove markdown, trim) - `inst-clean-title`
-5. [ ] - `p1` - DB: UPDATE conversations SET title = :generated_title WHERE id = :id - `inst-update-auto-title`
-6. [ ] - `p1` - **RETURN** generated title - `inst-return-auto-title`
+1. [x] - `p1` - Check if conversation title is default ("New Chat") - `inst-check-default-title`
+2. [x] - `p1` - **IF** title is not default **THEN** skip (user already renamed) - `inst-skip-if-renamed`
+3. [x] - `p1` - Extract first 50 characters of assistant response - `inst-extract-preview`
+4. [x] - `p1` - Clean and truncate to create title (remove markdown, trim) - `inst-clean-title`
+5. [x] - `p1` - DB: UPDATE conversations SET title = :generated_title WHERE id = :id - `inst-update-auto-title`
+6. [x] - `p1` - **RETURN** generated title - `inst-return-auto-title`
 
 ### Build Conversation List
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-algo-conversation-mgmt-build-list`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-algo-conversation-mgmt-build-list`
 
 **Input**: User ID, pagination params (limit, offset)
 
 **Output**: Paginated conversation list with metadata
 
 **Steps**:
-1. [ ] - `p1` - Set default limit (20) and offset (0) if not provided - `inst-set-defaults`
-2. [ ] - `p1` - Cap limit at maximum (100) - `inst-cap-limit`
-3. [ ] - `p1` - Execute count query for total - `inst-exec-count`
-4. [ ] - `p1` - Execute select query with pagination - `inst-exec-select`
-5. [ ] - `p1` - Calculate hasMore = (offset + limit) < total - `inst-calc-has-more`
-6. [ ] - `p1` - **RETURN** { conversations, total, limit, offset, hasMore } - `inst-return-paginated`
+1. [x] - `p1` - Set default limit (20) and offset (0) if not provided - `inst-set-defaults`
+2. [x] - `p1` - Cap limit at maximum (100) - `inst-cap-limit`
+3. [x] - `p1` - Execute count query for total - `inst-exec-count`
+4. [x] - `p1` - Execute select query with pagination - `inst-exec-select`
+5. [x] - `p1` - Calculate hasMore = (offset + limit) < total - `inst-calc-has-more`
+6. [x] - `p1` - **RETURN** { conversations, total, limit, offset, hasMore } - `inst-return-paginated`
 
 ## 4. States (CDSL)
 
 ### Conversation Lifecycle State
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-state-conversation-lifecycle`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-state-conversation-lifecycle`
 
 ```
 [Created] --add_message--> [Active] --delete--> [Deleted]
@@ -235,7 +235,7 @@ This feature provides the conversation management layer that organizes chat hist
 
 ### Create Conversation Endpoint
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-dod-conversation-mgmt-create-endpoint`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-dod-conversation-mgmt-create-endpoint`
 
 The system **MUST** expose POST /api/v1/conversations that creates a new conversation for the authenticated user and returns the conversation object.
 
@@ -254,7 +254,7 @@ The system **MUST** expose POST /api/v1/conversations that creates a new convers
 
 ### List Conversations Endpoint
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-dod-conversation-mgmt-list-endpoint`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-dod-conversation-mgmt-list-endpoint`
 
 The system **MUST** expose GET /api/v1/conversations that returns a paginated list of the user's conversations sorted by updated_at descending.
 
@@ -275,7 +275,7 @@ The system **MUST** expose GET /api/v1/conversations that returns a paginated li
 
 ### Get Conversation Endpoint
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-dod-conversation-mgmt-get-endpoint`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-dod-conversation-mgmt-get-endpoint`
 
 The system **MUST** expose GET /api/v1/conversations/:id that returns the conversation with its messages for the authenticated owner.
 
@@ -296,7 +296,7 @@ The system **MUST** expose GET /api/v1/conversations/:id that returns the conver
 
 ### Rename Conversation Endpoint
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-dod-conversation-mgmt-rename-endpoint`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-dod-conversation-mgmt-rename-endpoint`
 
 The system **MUST** expose PATCH /api/v1/conversations/:id that updates the conversation title for the authenticated owner.
 
@@ -315,7 +315,7 @@ The system **MUST** expose PATCH /api/v1/conversations/:id that updates the conv
 
 ### Delete Conversation Endpoint
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-dod-conversation-mgmt-delete-endpoint`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-dod-conversation-mgmt-delete-endpoint`
 
 The system **MUST** expose DELETE /api/v1/conversations/:id that soft-deletes the conversation for the authenticated owner.
 
@@ -334,7 +334,7 @@ The system **MUST** expose DELETE /api/v1/conversations/:id that soft-deletes th
 
 ### Search Conversations Endpoint
 
-- [ ] `p2` - **ID**: `cpt-ai-chat-via-cyber-pilot-dod-conversation-mgmt-search-endpoint`
+- [x] `p2` - **ID**: `cpt-ai-chat-via-cyber-pilot-dod-conversation-mgmt-search-endpoint`
 
 The system **MUST** expose GET /api/v1/conversations/search that searches conversation titles and message content for the authenticated user.
 
@@ -353,7 +353,7 @@ The system **MUST** expose GET /api/v1/conversations/search that searches conver
 
 ### Auto-Title Generation
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-dod-conversation-mgmt-auto-title`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-dod-conversation-mgmt-auto-title`
 
 The system **MUST** automatically generate a conversation title from the first assistant response when the title is still the default "New Chat".
 
