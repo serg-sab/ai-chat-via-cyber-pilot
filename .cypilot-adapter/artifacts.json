@@ -44,6 +44,10 @@
         {
           "path": "docs/features/content-moderation.md",
           "kind": "FEATURE"
+        },
+        {
+          "path": "docs/features/admin-dashboard.md",
+          "kind": "FEATURE"
         }
       ],
       "codebase": [],
