@@ -1,0 +1,29 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: aichat-postgres
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: aichat
+    ports:
+      - "5432:5432"
+    volumes:
+      - aichat_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U user -d aichat"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  redis:
+    image: redis:7
+    container_name: aichat-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - aichat_redisdata:/data
+
+volumes:
+  aichat_pgdata:
+  aichat_redisdata:
