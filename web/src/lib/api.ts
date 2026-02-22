@@ -123,6 +123,7 @@ export function sendMessage(
 
       const decoder = new TextDecoder();
       let buffer = '';
+      let currentEvent = '';
 
       while (true) {
         const { done, value } = await reader.read();
@@ -133,19 +134,22 @@ export function sendMessage(
         buffer = lines.pop() || '';
 
         for (const line of lines) {
-          if (line.startsWith('data: ')) {
+          if (line.startsWith('event: ')) {
+            currentEvent = line.slice(7).trim();
+          } else if (line.startsWith('data: ')) {
             try {
               const data = JSON.parse(line.slice(6));
-              if (data.type === 'token') {
+              if (currentEvent === 'token') {
                 onToken(data.content);
-              } else if (data.type === 'done') {
+              } else if (currentEvent === 'done') {
                 onDone(data.messageId);
-              } else if (data.type === 'error') {
-                onError(data.message);
+              } else if (currentEvent === 'error') {
+                onError(data.error || data.message);
               }
             } catch {
               // Ignore parse errors
             }
+            currentEvent = '';
           }
         }
       }
@@ -194,6 +198,7 @@ export async function regenerateResponse(
 
       const decoder = new TextDecoder();
       let buffer = '';
+      let currentEvent = '';
 
       while (true) {
         const { done, value } = await reader.read();
@@ -204,19 +209,22 @@ export async function regenerateResponse(
         buffer = lines.pop() || '';
 
         for (const line of lines) {
-          if (line.startsWith('data: ')) {
+          if (line.startsWith('event: ')) {
+            currentEvent = line.slice(7).trim();
+          } else if (line.startsWith('data: ')) {
             try {
               const data = JSON.parse(line.slice(6));
-              if (data.type === 'token') {
+              if (currentEvent === 'token') {
                 onToken(data.content);
-              } else if (data.type === 'done') {
+              } else if (currentEvent === 'done') {
                 onDone(data.messageId);
-              } else if (data.type === 'error') {
-                onError(data.message);
+              } else if (currentEvent === 'error') {
+                onError(data.error || data.message);
               }
             } catch {
               // Ignore parse errors
             }
+            currentEvent = '';
           }
         }
       }
