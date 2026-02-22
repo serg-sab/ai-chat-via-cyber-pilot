@@ -1,10 +1,10 @@
 # Feature: Admin Dashboard
 
-- [ ] `p2` - **ID**: `cpt-ai-chat-via-cyber-pilot-featstatus-admin-dashboard`
+- [x] `p2` - **ID**: `cpt-ai-chat-via-cyber-pilot-featstatus-admin-dashboard`
 
 ## 1. Feature Context
 
-- [ ] `p2` - `cpt-ai-chat-via-cyber-pilot-feature-admin-dashboard`
+- [x] `p2` - `cpt-ai-chat-via-cyber-pilot-feature-admin-dashboard`
 
 ### 1.1 Overview
 

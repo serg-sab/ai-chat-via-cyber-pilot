@@ -1,10 +1,10 @@
 # Feature: Content Moderation
 
-- [ ] `p2` - **ID**: `cpt-ai-chat-via-cyber-pilot-featstatus-content-moderation`
+- [x] `p2` - **ID**: `cpt-ai-chat-via-cyber-pilot-featstatus-content-moderation`
 
 ## 1. Feature Context
 
-- [ ] `p2` - `cpt-ai-chat-via-cyber-pilot-feature-content-moderation`
+- [x] `p2` - `cpt-ai-chat-via-cyber-pilot-feature-content-moderation`
 
 ### 1.1 Overview
 

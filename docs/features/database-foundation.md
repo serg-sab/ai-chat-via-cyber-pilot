@@ -1,10 +1,10 @@
 # Feature: Database Foundation
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-featstatus-database-foundation`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-featstatus-database-foundation`
 
 ## 1. Feature Context
 
-- [ ] `p1` - `cpt-ai-chat-via-cyber-pilot-feature-database-foundation`
+- [x] `p1` - `cpt-ai-chat-via-cyber-pilot-feature-database-foundation`
 
 ### 1.1 Overview
 
@@ -156,7 +156,7 @@ No entity state machines for this infrastructure feature. Database tables do not
 
 ### PostgreSQL Setup
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-dod-database-foundation-postgres-setup`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-dod-database-foundation-postgres-setup`
 
 The system **MUST** have a PostgreSQL 15+ database instance provisioned and accessible from the application environment.
 
@@ -169,7 +169,7 @@ The system **MUST** have a PostgreSQL 15+ database instance provisioned and acce
 
 ### Redis Setup
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-dod-database-foundation-redis-setup`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-dod-database-foundation-redis-setup`
 
 The system **MUST** have a Redis 7+ instance provisioned and accessible for session management and caching.
 
@@ -182,7 +182,7 @@ The system **MUST** have a Redis 7+ instance provisioned and accessible for sess
 
 ### Users Table
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-dod-database-foundation-users-table`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-dod-database-foundation-users-table`
 
 The system **MUST** have a users table with columns for id, email, password_hash, oauth_provider, oauth_id, settings, status, created_at, updated_at. Email must be unique and indexed. Status must be constrained to valid values.
 
@@ -197,7 +197,7 @@ The system **MUST** have a users table with columns for id, email, password_hash
 
 ### Conversations Table
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-dod-database-foundation-conversations-table`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-dod-database-foundation-conversations-table`
 
 The system **MUST** have a conversations table with columns for id, user_id, title, message_count, created_at, updated_at, deleted_at. user_id must reference users with cascade delete. Indexes on user_id and updated_at.
 
@@ -212,7 +212,7 @@ The system **MUST** have a conversations table with columns for id, user_id, tit
 
 ### Messages Table
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-dod-database-foundation-messages-table`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-dod-database-foundation-messages-table`
 
 The system **MUST** have a messages table with columns for id, conversation_id, role, content, metadata, parent_message_id, created_at. conversation_id must reference conversations with cascade delete. Role must be constrained to valid values.
 
@@ -227,7 +227,7 @@ The system **MUST** have a messages table with columns for id, conversation_id, 
 
 ### Connection Pooling
 
-- [ ] `p2` - **ID**: `cpt-ai-chat-via-cyber-pilot-dod-database-foundation-connection-pool`
+- [x] `p2` - **ID**: `cpt-ai-chat-via-cyber-pilot-dod-database-foundation-connection-pool`
 
 The system **MUST** have connection pooling configured with appropriate min/max connections and timeouts for production workloads.
 
@@ -242,7 +242,7 @@ The system **MUST** have connection pooling configured with appropriate min/max 
 
 ### Migration Tooling
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-dod-database-foundation-migrations`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-dod-database-foundation-migrations`
 
 The system **MUST** have migration tooling that can apply schema changes in order, track applied migrations, and rollback on failure.
 

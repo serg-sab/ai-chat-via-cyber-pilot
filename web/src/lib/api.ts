@@ -241,6 +241,16 @@ export async function regenerateResponse(
   return controller;
 }
 
+// Moderation API
+export async function reportMessage(messageId: string, reason: string) {
+  const response = await fetch(`${API_BASE}/messages/${messageId}/report`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', ...getAuthHeaders() },
+    body: JSON.stringify({ reason }),
+  });
+  return handleResponse<{ id: string; messageId: string; status: string }>(response);
+}
+
 // Types
 export interface User {
   id: string;

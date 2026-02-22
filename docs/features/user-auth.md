@@ -1,10 +1,10 @@
 # Feature: User Authentication
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-featstatus-user-auth`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-featstatus-user-auth`
 
 ## 1. Feature Context
 
-- [ ] `p1` - `cpt-ai-chat-via-cyber-pilot-feature-user-auth`
+- [x] `p1` - `cpt-ai-chat-via-cyber-pilot-feature-user-auth`
 
 ### 1.1 Overview
 

@@ -1,10 +1,10 @@
 # Feature: Chat Core
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-featstatus-chat-core`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-featstatus-chat-core`
 
 ## 1. Feature Context
 
-- [ ] `p1` - `cpt-ai-chat-via-cyber-pilot-feature-chat-core`
+- [x] `p1` - `cpt-ai-chat-via-cyber-pilot-feature-chat-core`
 
 ### 1.1 Overview
 

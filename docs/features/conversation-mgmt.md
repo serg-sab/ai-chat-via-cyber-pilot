@@ -1,10 +1,10 @@
 # Feature: Conversation Management
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-featstatus-conversation-mgmt`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-featstatus-conversation-mgmt`
 
 ## 1. Feature Context
 
-- [ ] `p1` - `cpt-ai-chat-via-cyber-pilot-feature-conversation-mgmt`
+- [x] `p1` - `cpt-ai-chat-via-cyber-pilot-feature-conversation-mgmt`
 
 ### 1.1 Overview
 
