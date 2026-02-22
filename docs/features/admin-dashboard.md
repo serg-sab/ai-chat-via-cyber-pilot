@@ -36,7 +36,7 @@ This feature provides operational visibility and control for administrators to m
 
 ### View Metrics Flow
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-flow-admin-dashboard-view-metrics`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-flow-admin-dashboard-view-metrics`
 
 **Actor**: `cpt-ai-chat-via-cyber-pilot-actor-admin`
 
@@ -50,14 +50,14 @@ This feature provides operational visibility and control for administrators to m
 - Not admin — return 403
 
 **Steps**:
-1. [ ] - `p1` - Admin requests GET /api/v1/admin/metrics?period=24h - `inst-request-metrics`
-2. [ ] - `p1` - Validate admin role - `inst-validate-admin-metrics`
-3. [ ] - `p1` - Algorithm: aggregate metrics using `cpt-ai-chat-via-cyber-pilot-algo-admin-dashboard-aggregate-metrics` - `inst-aggregate-metrics`
-4. [ ] - `p1` - **RETURN** metrics object with volume, latency, errors - `inst-return-metrics`
+1. [x] - `p1` - Admin requests GET /api/v1/admin/metrics?period=24h - `inst-request-metrics`
+2. [x] - `p1` - Validate admin role - `inst-validate-admin-metrics`
+3. [x] - `p1` - Algorithm: aggregate metrics using `cpt-ai-chat-via-cyber-pilot-algo-admin-dashboard-aggregate-metrics` - `inst-aggregate-metrics`
+4. [x] - `p1` - **RETURN** metrics object with volume, latency, errors - `inst-return-metrics`
 
 ### View Usage Stats Flow
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-flow-admin-dashboard-view-usage`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-flow-admin-dashboard-view-usage`
 
 **Actor**: `cpt-ai-chat-via-cyber-pilot-actor-admin`
 
@@ -71,17 +71,17 @@ This feature provides operational visibility and control for administrators to m
 - Not admin — return 403
 
 **Steps**:
-1. [ ] - `p1` - Admin requests GET /api/v1/admin/usage?period=7d - `inst-request-usage`
-2. [ ] - `p1` - Validate admin role - `inst-validate-admin-usage`
-3. [ ] - `p1` - DB: SELECT SUM(metadata->>'tokenCount') FROM messages WHERE created_at > :start - `inst-query-token-usage`
-4. [ ] - `p1` - Algorithm: calculate cost estimates using `cpt-ai-chat-via-cyber-pilot-algo-admin-dashboard-calculate-cost` - `inst-calculate-cost`
-5. [ ] - `p1` - DB: SELECT user_id, COUNT(*) FROM messages GROUP BY user_id ORDER BY COUNT DESC LIMIT 10 - `inst-query-top-users`
-6. [ ] - `p1` - Anonymize user IDs for privacy - `inst-anonymize-users`
-7. [ ] - `p1` - **RETURN** usage stats object - `inst-return-usage`
+1. [x] - `p1` - Admin requests GET /api/v1/admin/usage?period=7d - `inst-request-usage`
+2. [x] - `p1` - Validate admin role - `inst-validate-admin-usage`
+3. [x] - `p1` - DB: SELECT SUM(metadata->>'tokenCount') FROM messages WHERE created_at > :start - `inst-query-token-usage`
+4. [x] - `p1` - Algorithm: calculate cost estimates using `cpt-ai-chat-via-cyber-pilot-algo-admin-dashboard-calculate-cost` - `inst-calculate-cost`
+5. [x] - `p1` - DB: SELECT user_id, COUNT(*) FROM messages GROUP BY user_id ORDER BY COUNT DESC LIMIT 10 - `inst-query-top-users`
+6. [x] - `p1` - Anonymize user IDs for privacy - `inst-anonymize-users`
+7. [x] - `p1` - **RETURN** usage stats object - `inst-return-usage`
 
 ### Manage Feature Flags Flow
 
-- [ ] `p2` - **ID**: `cpt-ai-chat-via-cyber-pilot-flow-admin-dashboard-feature-flags`
+- [x] `p2` - **ID**: `cpt-ai-chat-via-cyber-pilot-flow-admin-dashboard-feature-flags`
 
 **Actor**: `cpt-ai-chat-via-cyber-pilot-actor-admin`
 
@@ -96,19 +96,19 @@ This feature provides operational visibility and control for administrators to m
 - Invalid flag name — return 400
 
 **Steps**:
-1. [ ] - `p2` - Admin requests GET /api/v1/admin/feature-flags - `inst-get-flags`
-2. [ ] - `p2` - Validate admin role - `inst-validate-admin-flags`
-3. [ ] - `p2` - REDIS: GET feature_flags - `inst-redis-get-flags`
-4. [ ] - `p2` - **RETURN** current flags object - `inst-return-flags`
-5. [ ] - `p2` - Admin submits POST /api/v1/admin/feature-flags with { flag, enabled } - `inst-submit-flag-change`
-6. [ ] - `p2` - Validate flag name is known - `inst-validate-flag-name`
-7. [ ] - `p2` - REDIS: HSET feature_flags :flag :enabled - `inst-redis-set-flag`
-8. [ ] - `p2` - Log flag change for audit - `inst-log-flag-change`
-9. [ ] - `p2` - **RETURN** updated flags object - `inst-return-updated-flags`
+1. [x] - `p2` - Admin requests GET /api/v1/admin/feature-flags - `inst-get-flags`
+2. [x] - `p2` - Validate admin role - `inst-validate-admin-flags`
+3. [x] - `p2` - REDIS: GET feature_flags - `inst-redis-get-flags`
+4. [x] - `p2` - **RETURN** current flags object - `inst-return-flags`
+5. [x] - `p2` - Admin submits POST /api/v1/admin/feature-flags with { flag, enabled } - `inst-submit-flag-change`
+6. [x] - `p2` - Validate flag name is known - `inst-validate-flag-name`
+7. [x] - `p2` - REDIS: HSET feature_flags :flag :enabled - `inst-redis-set-flag`
+8. [x] - `p2` - Log flag change for audit - `inst-log-flag-change`
+9. [x] - `p2` - **RETURN** updated flags object - `inst-return-updated-flags`
 
 ### Activate Kill Switch Flow
 
-- [ ] `p2` - **ID**: `cpt-ai-chat-via-cyber-pilot-flow-admin-dashboard-kill-switch`
+- [x] `p2` - **ID**: `cpt-ai-chat-via-cyber-pilot-flow-admin-dashboard-kill-switch`
 
 **Actor**: `cpt-ai-chat-via-cyber-pilot-actor-admin`
 
@@ -123,51 +123,51 @@ This feature provides operational visibility and control for administrators to m
 - Invalid model name — return 400
 
 **Steps**:
-1. [ ] - `p2` - Admin submits POST /api/v1/admin/kill-switch with { model, enabled } - `inst-submit-kill-switch`
-2. [ ] - `p2` - Validate admin role - `inst-validate-admin-kill`
-3. [ ] - `p2` - Validate model name is known - `inst-validate-model-name`
-4. [ ] - `p2` - REDIS: SET kill_switch:model:{model} :enabled - `inst-redis-set-kill`
-5. [ ] - `p2` - Log kill switch change for audit - `inst-log-kill-switch`
-6. [ ] - `p2` - **RETURN** kill switch status - `inst-return-kill-status`
+1. [x] - `p2` - Admin submits POST /api/v1/admin/kill-switch with { model, enabled } - `inst-submit-kill-switch`
+2. [x] - `p2` - Validate admin role - `inst-validate-admin-kill`
+3. [x] - `p2` - Validate model name is known - `inst-validate-model-name`
+4. [x] - `p2` - REDIS: SET kill_switch:model:{model} :enabled - `inst-redis-set-kill`
+5. [x] - `p2` - Log kill switch change for audit - `inst-log-kill-switch`
+6. [x] - `p2` - **RETURN** kill switch status - `inst-return-kill-status`
 
 ## 3. Processes / Business Logic (CDSL)
 
 ### Aggregate Metrics
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-algo-admin-dashboard-aggregate-metrics`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-algo-admin-dashboard-aggregate-metrics`
 
 **Input**: Period (24h, 7d, 30d)
 
 **Output**: { requestVolume, latencyPercentiles, errorRates }
 
 **Steps**:
-1. [ ] - `p1` - Calculate start timestamp from period - `inst-calc-start-time`
-2. [ ] - `p1` - DB: SELECT COUNT(*) FROM messages WHERE created_at > :start - `inst-count-requests`
-3. [ ] - `p1` - DB: SELECT percentile_cont(0.5, 0.95, 0.99) FROM message_latencies WHERE created_at > :start - `inst-calc-percentiles`
-4. [ ] - `p1` - DB: SELECT error_type, COUNT(*) FROM error_logs WHERE created_at > :start GROUP BY error_type - `inst-count-errors`
-5. [ ] - `p1` - Calculate error rate = errors / total requests - `inst-calc-error-rate`
-6. [ ] - `p1` - **RETURN** aggregated metrics object - `inst-return-aggregated`
+1. [x] - `p1` - Calculate start timestamp from period - `inst-calc-start-time`
+2. [x] - `p1` - DB: SELECT COUNT(*) FROM messages WHERE created_at > :start - `inst-count-requests`
+3. [x] - `p1` - DB: SELECT percentile_cont(0.5, 0.95, 0.99) FROM message_latencies WHERE created_at > :start - `inst-calc-percentiles`
+4. [x] - `p1` - DB: SELECT error_type, COUNT(*) FROM error_logs WHERE created_at > :start GROUP BY error_type - `inst-count-errors`
+5. [x] - `p1` - Calculate error rate = errors / total requests - `inst-calc-error-rate`
+6. [x] - `p1` - **RETURN** aggregated metrics object - `inst-return-aggregated`
 
 ### Calculate Cost Estimates
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-algo-admin-dashboard-calculate-cost`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-algo-admin-dashboard-calculate-cost`
 
 **Input**: Total tokens, model name
 
 **Output**: Estimated cost in USD
 
 **Steps**:
-1. [ ] - `p1` - Load pricing config for model - `inst-load-pricing`
-2. [ ] - `p1` - Separate input tokens and output tokens - `inst-separate-tokens`
-3. [ ] - `p1` - Calculate input cost = input_tokens * input_price_per_1k / 1000 - `inst-calc-input-cost`
-4. [ ] - `p1` - Calculate output cost = output_tokens * output_price_per_1k / 1000 - `inst-calc-output-cost`
-5. [ ] - `p1` - **RETURN** total cost estimate - `inst-return-cost`
+1. [x] - `p1` - Load pricing config for model - `inst-load-pricing`
+2. [x] - `p1` - Separate input tokens and output tokens - `inst-separate-tokens`
+3. [x] - `p1` - Calculate input cost = input_tokens * input_price_per_1k / 1000 - `inst-calc-input-cost`
+4. [x] - `p1` - Calculate output cost = output_tokens * output_price_per_1k / 1000 - `inst-calc-output-cost`
+5. [x] - `p1` - **RETURN** total cost estimate - `inst-return-cost`
 
 ## 4. States (CDSL)
 
 ### Kill Switch State
 
-- [ ] `p2` - **ID**: `cpt-ai-chat-via-cyber-pilot-state-kill-switch`
+- [x] `p2` - **ID**: `cpt-ai-chat-via-cyber-pilot-state-kill-switch`
 
 ```
 [Active] --disable--> [Disabled] --enable--> [Active]
@@ -185,7 +185,7 @@ This feature provides operational visibility and control for administrators to m
 
 ### Metrics Endpoint
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-dod-admin-dashboard-metrics-endpoint`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-dod-admin-dashboard-metrics-endpoint`
 
 The system **MUST** expose GET /api/v1/admin/metrics that returns request volume, latency percentiles, and error rates for the specified period.
 
@@ -205,7 +205,7 @@ The system **MUST** expose GET /api/v1/admin/metrics that returns request volume
 
 ### Usage Stats Endpoint
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-dod-admin-dashboard-usage-endpoint`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-dod-admin-dashboard-usage-endpoint`
 
 The system **MUST** expose GET /api/v1/admin/usage that returns token usage, cost estimates, and top users (anonymized) for the specified period.
 
@@ -226,7 +226,7 @@ The system **MUST** expose GET /api/v1/admin/usage that returns token usage, cos
 
 ### Feature Flags Endpoint
 
-- [ ] `p2` - **ID**: `cpt-ai-chat-via-cyber-pilot-dod-admin-dashboard-feature-flags-endpoint`
+- [x] `p2` - **ID**: `cpt-ai-chat-via-cyber-pilot-dod-admin-dashboard-feature-flags-endpoint`
 
 The system **MUST** expose GET/POST /api/v1/admin/feature-flags that allows admins to view and toggle feature flags.
 
@@ -245,7 +245,7 @@ The system **MUST** expose GET/POST /api/v1/admin/feature-flags that allows admi
 
 ### Kill Switch Endpoint
 
-- [ ] `p2` - **ID**: `cpt-ai-chat-via-cyber-pilot-dod-admin-dashboard-kill-switch-endpoint`
+- [x] `p2` - **ID**: `cpt-ai-chat-via-cyber-pilot-dod-admin-dashboard-kill-switch-endpoint`
 
 The system **MUST** expose POST /api/v1/admin/kill-switch that allows admins to disable/enable models or providers.
 
@@ -264,7 +264,7 @@ The system **MUST** expose POST /api/v1/admin/kill-switch that allows admins to 
 
 ### Admin Authentication
 
-- [ ] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-dod-admin-dashboard-auth`
+- [x] `p1` - **ID**: `cpt-ai-chat-via-cyber-pilot-dod-admin-dashboard-auth`
 
 The system **MUST** restrict all admin endpoints to users with admin role, returning 403 for non-admin users.
 

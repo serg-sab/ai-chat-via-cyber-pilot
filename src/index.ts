@@ -7,6 +7,7 @@ import { authRoutes } from './auth';
 import { conversationRoutes } from './conversations';
 import { chatRoutes } from './chat';
 import { moderationRoutes, adminModerationRoutes } from './moderation';
+import { adminRoutes } from './admin';
 
 const PORT = process.env.PORT || 3000;
 
@@ -31,6 +32,7 @@ async function main() {
   app.use('/api/v1/conversations', chatRoutes);
   app.use('/api/v1', moderationRoutes);
   app.use('/api/v1/admin', adminModerationRoutes);
+  app.use('/api/v1/admin', adminRoutes);
   
   // Start server
   app.listen(PORT, () => {
