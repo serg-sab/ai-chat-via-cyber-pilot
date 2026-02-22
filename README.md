@@ -8,6 +8,10 @@ A full-stack AI chat application with real-time streaming responses, conversatio
 |-------|--------------|------|
 | ![Login](docs/screenshots/login.png) | ![Registration](docs/screenshots/registration.png) | ![Chat](docs/screenshots/chat.png) |
 
+| Dashboard | Feedback | Markdown |
+|-----------|----------|----------|
+| ![Dashboard](docs/screenshots/dashboard.png) | ![Feedback](docs/screenshots/feedback.png) | ![Markdown](docs/screenshots/markdown.png) |
+
 ## Features
 
 - **Real-time AI Chat** - Streaming responses via Server-Sent Events (SSE)
@@ -128,6 +132,28 @@ A full-stack AI chat application with real-time streaming responses, conversatio
 | `POST` | `/api/conversations/:id/stop` | Stop generation |
 | `GET` | `/api/admin/metrics` | Admin metrics |
 | `POST` | `/api/moderation/report` | Report message |
+
+## Admin Access
+
+To grant admin access to a user:
+
+1. **Update the user's role in the database**:
+   ```sql
+   UPDATE users 
+   SET settings = jsonb_set(COALESCE(settings, '{}'), '{role}', '"admin"') 
+   WHERE email = 'your-email@example.com';
+   ```
+
+2. **Log out and log back in** to get a new JWT token with admin privileges.
+
+3. **Access the Admin Dashboard** by clicking the gear icon (⚙️) in the sidebar.
+
+The Admin Dashboard provides:
+- **Metrics** - Request volume, latency percentiles, error rates
+- **Usage** - Token usage, cost estimates, top users
+- **Feature Flags** - Toggle streaming, moderation, rate limiting
+- **Kill Switch** - Enable/disable LLM models
+- **Reports** - Review and resolve user content reports
 
 ## Development
 

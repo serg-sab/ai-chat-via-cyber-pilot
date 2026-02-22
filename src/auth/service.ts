@@ -131,7 +131,8 @@ export async function login(input: LoginInput): Promise<AuthResponse> {
   // @cpt-end:cpt-ai-chat-via-cyber-pilot-flow-user-auth-login:p1:inst-invalid-password
   
   // @cpt-begin:cpt-ai-chat-via-cyber-pilot-flow-user-auth-login:p1:inst-generate-jwt-login
-  const { token, sessionId } = generateToken(user.id, user.email);
+  const userRole = (user.settings as { role?: string })?.role || 'user';
+  const { token, sessionId } = generateToken(user.id, user.email, userRole);
   // @cpt-end:cpt-ai-chat-via-cyber-pilot-flow-user-auth-login:p1:inst-generate-jwt-login
   
   // @cpt-begin:cpt-ai-chat-via-cyber-pilot-flow-user-auth-login:p1:inst-store-session-login

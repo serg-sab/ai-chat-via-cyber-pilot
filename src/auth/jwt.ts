@@ -13,13 +13,14 @@ const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN || '24h';
 // @cpt-begin:cpt-ai-chat-via-cyber-pilot-algo-user-auth-generate-jwt:p1:inst-generate-session-id
 // @cpt-begin:cpt-ai-chat-via-cyber-pilot-algo-user-auth-generate-jwt:p1:inst-build-claims
 // @cpt-begin:cpt-ai-chat-via-cyber-pilot-algo-user-auth-generate-jwt:p1:inst-sign-jwt
-export function generateToken(userId: string, email: string): { token: string; sessionId: string } {
+export function generateToken(userId: string, email: string, role?: string): { token: string; sessionId: string } {
   const sessionId = uuidv4();
   
   const payload = {
     sub: userId,
     email,
     sid: sessionId,
+    role: role || 'user',
   };
   
   const token = jwt.sign(payload, JWT_SECRET, {
