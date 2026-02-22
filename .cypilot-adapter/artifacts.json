@@ -24,6 +24,10 @@
         {
           "path": "docs/DECOMPOSITION.md",
           "kind": "DECOMPOSITION"
+        },
+        {
+          "path": "docs/features/database-foundation.md",
+          "kind": "FEATURE"
         }
       ],
       "codebase": [],
