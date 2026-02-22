@@ -1,6 +1,32 @@
 # AI Chat Application
 
-A web-based AI chat application with streaming responses, conversation history, and admin observability.
+A full-stack AI chat application with real-time streaming responses, conversation history, user authentication, content moderation, and admin dashboard.
+
+## Screenshots
+
+| Login | Registration | Chat |
+|-------|--------------|------|
+| ![Login](docs/screenshots/login.png) | ![Registration](docs/screenshots/registration.png) | ![Chat](docs/screenshots/chat.png) |
+
+## Features
+
+- **Real-time AI Chat** - Streaming responses via Server-Sent Events (SSE)
+- **User Authentication** - JWT-based login/registration with secure password hashing
+- **Conversation Management** - Create, rename, delete, and search conversations
+- **Content Moderation** - OpenAI moderation API integration with user reporting
+- **Admin Dashboard** - Usage metrics, feature flags, and kill switch controls
+- **Rate Limiting** - Per-user request throttling with Redis
+- **Modern UI** - React + TailwindCSS with dark mode support
+
+## Tech Stack
+
+| Layer | Technology |
+|-------|------------|
+| **Frontend** | React, Vite, TypeScript, TailwindCSS |
+| **Backend** | Node.js, Express, TypeScript |
+| **Database** | PostgreSQL |
+| **Cache** | Redis |
+| **AI** | OpenAI API (GPT-4) |
 
 ## Quick Start
 
@@ -9,8 +35,9 @@ A web-based AI chat application with streaming responses, conversation history, 
 - Node.js 20+
 - PostgreSQL 15+
 - Redis 7+
+- OpenAI API key
 
-### Setup
+### Backend Setup
 
 1. **Install dependencies**:
    ```bash
@@ -20,7 +47,7 @@ A web-based AI chat application with streaming responses, conversation history, 
 2. **Configure environment**:
    ```bash
    cp .env.example .env
-   # Edit .env with your database credentials
+   # Edit .env with your credentials
    ```
 
 3. **Run migrations**:
@@ -28,63 +55,96 @@ A web-based AI chat application with streaming responses, conversation history, 
    npm run migrate
    ```
 
-4. **Start development server**:
+4. **Start backend server**:
    ```bash
    npm run dev
    ```
+   Backend runs on http://localhost:3000
+
+### Frontend Setup
+
+1. **Install dependencies**:
+   ```bash
+   cd web
+   npm install
+   ```
+
+2. **Start frontend dev server**:
+   ```bash
+   npm run dev
+   ```
+   Frontend runs on http://localhost:5173
 
 ## Project Structure
 
 ```
-src/
-├── db/
-│   ├── migrations/     # SQL migration files
-│   ├── pool.ts         # PostgreSQL connection pool
-│   ├── redis.ts        # Redis client
-│   ├── migrate.ts      # Migration runner
-│   └── index.ts        # Database module exports
+├── src/                    # Backend source
+│   ├── auth/               # Authentication (JWT, bcrypt)
+│   ├── chat/               # Chat service (SSE streaming, LLM)
+│   ├── conversations/      # Conversation CRUD
+│   ├── moderation/         # Content moderation
+│   ├── admin/              # Admin dashboard APIs
+│   ├── db/                 # Database (PostgreSQL, Redis)
+│   │   └── migrations/     # SQL migrations
+│   └── index.ts            # Express app entry
+├── web/                    # Frontend source
+│   └── src/
+│       ├── components/     # React components
+│       ├── hooks/          # Custom hooks (useAuth, useChat)
+│       └── lib/            # API client
+└── docs/                   # Documentation
+    └── features/           # Feature specifications
 ```
 
 ## Database Schema
 
-### Tables
-
-- **users** - User accounts with auth credentials and settings
-- **conversations** - Chat threads owned by users
-- **messages** - Individual messages in conversations
-
-### Running Migrations
-
-```bash
-# Run all pending migrations
-npm run migrate
-
-# Migrations are applied in order and tracked in the `migrations` table
-```
+| Table | Description |
+|-------|-------------|
+| `users` | User accounts with credentials and settings |
+| `conversations` | Chat threads owned by users |
+| `messages` | Individual messages with role and metadata |
+| `reports` | User-submitted content reports |
+| `moderation_logs` | Automated moderation event logs |
 
 ## Environment Variables
 
-| Variable | Description | Default |
-|----------|-------------|---------|
-| `DATABASE_URL` | PostgreSQL connection string | Required |
-| `REDIS_URL` | Redis connection string | Required |
-| `DB_POOL_MIN` | Minimum pool connections | 2 |
-| `DB_POOL_MAX` | Maximum pool connections | 10 |
+| Variable | Description | Required |
+|----------|-------------|----------|
+| `DATABASE_URL` | PostgreSQL connection string | Yes |
+| `REDIS_URL` | Redis connection string | Yes |
+| `JWT_SECRET` | Secret for JWT signing | Yes |
+| `OPENAI_API_KEY` | OpenAI API key | Yes |
+| `PORT` | Server port | No (default: 3000) |
+
+## API Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `POST` | `/api/auth/register` | Register new user |
+| `POST` | `/api/auth/login` | Login and get JWT |
+| `GET` | `/api/conversations` | List user conversations |
+| `POST` | `/api/conversations` | Create conversation |
+| `POST` | `/api/conversations/:id/messages` | Send message (SSE stream) |
+| `POST` | `/api/conversations/:id/stop` | Stop generation |
+| `GET` | `/api/admin/metrics` | Admin metrics |
+| `POST` | `/api/moderation/report` | Report message |
 
 ## Development
 
 ```bash
-# Build TypeScript
-npm run build
+# Backend
+npm run dev          # Start with ts-node
+npm run build        # Compile TypeScript
+npm test             # Run tests
 
-# Run tests
-npm test
+# Frontend
+cd web
+npm run dev          # Vite dev server
+npm run build        # Production build
 ```
 
-## Architecture
+## Documentation
 
-See [docs/DESIGN.md](docs/DESIGN.md) for detailed architecture documentation.
-
-## Features
-
-See [docs/DECOMPOSITION.md](docs/DECOMPOSITION.md) for feature breakdown and implementation status.
+- [Architecture Design](docs/DESIGN.md)
+- [Feature Decomposition](docs/DECOMPOSITION.md)
+- [Feature Specifications](docs/features/)
