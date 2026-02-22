@@ -72,7 +72,10 @@ export async function getConversation(id: string) {
   const response = await fetch(`${API_BASE}/conversations/${id}`, {
     headers: { ...getAuthHeaders() },
   });
-  return handleResponse<{ conversation: Conversation; messages: Message[] }>(response);
+  const data = await handleResponse<Conversation & { messages: Message[] }>(response);
+  // Backend returns conversation with messages embedded, restructure for frontend
+  const { messages, ...conversation } = data;
+  return { conversation, messages };
 }
 
 export async function deleteConversation(id: string) {
