@@ -17,7 +17,13 @@ The AI Chat application was developed in phases:
 ### Initialize Cypilot Adapter
 
 ```bash
-cypilot init
+# git submodule
+git submodule add https://github.com/cyberfabric/cyber-pilot cypilot
+git submodule update --init --recursive
+
+# Agent-safe invocation
+python cypilot/skills/cypilot/scripts/cypilot.py init
+python cypilot/skills/cypilot/scripts/cypilot.py agents --agent windsurf
 ```
 
 This creates:
@@ -52,6 +58,12 @@ The `artifacts.json` registers all design documents:
 ## Phase 2: Create Design Artifacts
 
 ### Start with an Initial Prompt
+
+Enable Cypilot mode:
+
+```bash
+cypilot on
+```
 
 The project began with a detailed requirements document describing the AI chat application. See [initial-prompt.txt](initial-prompt.txt) for the full prompt that was used to bootstrap the project.
 
